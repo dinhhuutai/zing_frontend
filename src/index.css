@@ -17,6 +17,9 @@
 :root {
     --height-header: 70px;
     --width-sidebar: 240px;
+
+    --bg-color-sidebar: #221a2d;
+    --bg-color-header: #170f23;
 }
 
 ::-webkit-scrollbar {
