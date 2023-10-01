@@ -7,7 +7,7 @@ import config from '~/config';
 
 function Sidebar() {
     return (
-        <div className="w-full h-full bg-[var(--bg-color-sidebar)] flex flex-col">
+        <div className="h-full bg-[var(--bg-color-sidebar)] flex flex-col">
             <Link to={config.routes.explore} className='h-[var(--height-header)] flex items-center px-[26px]'>
                 <img src={logoDart} alt='logo-dart' className='w-[120px] h-[40px]' />
             </Link>

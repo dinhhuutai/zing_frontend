@@ -17,9 +17,11 @@
 :root {
     --height-header: 70px;
     --width-sidebar: 240px;
+    --height-controls: 90px;
 
     --bg-color-sidebar: #221a2d;
     --bg-color-header: #170f23;
+    --bg-color-controls: #130c1c;
 }
 
 ::-webkit-scrollbar {
@@ -42,4 +44,14 @@
 
 ::-webkit-scrollbar-thumb:hover {
     display: block;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ed2b91;
+    z-index: 10;
 }
