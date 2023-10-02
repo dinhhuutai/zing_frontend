@@ -16,7 +16,7 @@ function DefaultLayout({children}) {
                 <div className='h-[var(--height-header)] fixed top-[0px] left-[var(--width-sidebar)] right-[0px]'>
                     <Header />
                 </div>
-                <div className='mt-[var(--height-header)]'>
+                <div className='mt-[var(--height-header)] bg-[var(--bg-color-page)]'>
                     {children}
                 </div>
             </div>

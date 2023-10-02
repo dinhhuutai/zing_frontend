@@ -22,6 +22,7 @@
     --bg-color-sidebar: #221a2d;
     --bg-color-header: #170f23;
     --bg-color-controls: #130c1c;
+    --bg-color-page: #170f23;
 }
 
 ::-webkit-scrollbar {
@@ -30,7 +31,7 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #221a2d;
 }
 
 ::-webkit-scrollbar-thumb {

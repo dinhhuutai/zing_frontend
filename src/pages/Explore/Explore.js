@@ -1,6 +1,10 @@
+import Slider from './Slider';
+
 function Explore() {
     return (
-        <div>Explore</div>
+        <div className='px-[50px]'>
+            <Slider />
+        </div>
     );
 }
 
