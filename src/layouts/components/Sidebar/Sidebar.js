@@ -71,7 +71,7 @@ function Sidebar() {
                             </NavLink>
                         </li>
                     </ul>
-                    <div className='px-[26px]'>
+                    <div className='px-[26px] pb-[10px]'>
                         <div className='bg-[#fff] px-[14px] py-[10px] flex flex-col items-center rounded-[8px] bg-gradient-to-b from-red-500 to-blue-500'>
                             <p className='text-[12px] text-center font-bold leading-[16px] text-[#fff]'>Đăng nhập để khám phá playlist dành riêng cho bạn</p>
                             <NavLink to={config.routes.login}><button className='hover:text-[#dad7d7] transition-all mt-[10px] bg-[#a55fe3] py-[4px] px-[30px] rounded-[20px] text-[12px] text-[#fff] font-bold uppercase border-[1px] border-solid border-[#fff]'>Đăng nhập</button></NavLink>

@@ -14,6 +14,69 @@
     }
 }
 
+@layer components {
+    .dotThreeHiddenText {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    
+    .dotThreeHiddenText2 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .fontTextChart {
+        background: radial-gradient(50% 124.93% at 95.86% -10%,#3efad9 0,hsla(0,0%,100%,0) 100%),linear-gradient(91.56deg,#ff9357 1.54%,#9100ff 98.71%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@layer components {
+    .fontTextRank {    
+        opacity: .4;
+        -webkit-text-stroke: 1px #fff;
+        font-size: 34px;
+        font-weight: 900;
+        color: transparent;
+        line-height: 1;
+    }
+
+    
+    .fontTextChartOne {    
+        opacity: 1;
+        -webkit-text-stroke: 1px #4a90e2;
+        font-weight: 500;
+        color: rgba(74,144,226,0);
+        line-height: 1;
+    }
+    .fontTextChartTwo {    
+        opacity: 1;
+        -webkit-text-stroke: 1px #50e3c2;
+        font-weight: 500;
+        color: rgba(74,144,226,0);
+        line-height: 1;
+    }
+    .fontTextChartThree {    
+        opacity: 1;
+        -webkit-text-stroke: 1px #e35050;
+        font-weight: 500;
+        color: rgba(74,144,226,0);
+        line-height: 1;
+    }
+    .fontTextChartOther {    
+        opacity: 1;
+        -webkit-text-stroke: 1px #fff;
+        font-weight: 500;
+        color: rgba(74,144,226,0);
+        line-height: 1;
+    }
+}
+
+
 :root {
     --height-header: 70px;
     --width-sidebar: 240px;
@@ -47,7 +110,7 @@
     display: block;
 }
 
-input[type=range]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
