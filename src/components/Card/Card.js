@@ -17,7 +17,7 @@ function Card({data, type }) {
                     </div>
                 </div>
                 <img
-                    className="group-hover:scale-[1.1] group-hover:brightness-50 transition-all ease-linear duration-[.4s]"
+                    className="group-hover:scale-[1.1] group-hover:brightness-50 w-full h-full bg-cover transition-all ease-linear duration-[.4s]"
                     src={data.img}
                     alt={data.perface}
                 />

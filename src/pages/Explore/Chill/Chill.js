@@ -8,6 +8,7 @@ import chill2 from '~/assets/imgs/chill-2.jpg';
 import chill3 from '~/assets/imgs/chill-3.jpg';
 import chill4 from '~/assets/imgs/chill-4.jpg';
 import chill5 from '~/assets/imgs/chill-5.jpg';
+import { Link } from "react-router-dom";
 
 const dataChill = [
     {
@@ -50,10 +51,10 @@ function Chill() {
         <div className='text-[#fff] mt-[40px]'>
             <div className='mt-[18px] flex justify-between'>
                 <h1 className='text-[18px] capitalize font-bold'>Chill</h1>
-                <div className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
+                <Link to='/hub/Chill-Thu-Gian/IWZ9Z0CI' className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
                     <div className="uppercase text-[12px]">Tất cả</div>
                     <div className='text-[18px] ml-[4px]'><BsChevronRight /></div>
-                </div>
+                </Link>
             </div>
             <div className="grid grid-cols-5 gap-[20px] mt-[20px]">
                 {

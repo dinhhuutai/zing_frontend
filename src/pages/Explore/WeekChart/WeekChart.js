@@ -29,7 +29,7 @@ function WeekChart() {
 
     return (
         <div>
-            <div className='grid grid-cols-3 gap-[20px] mt-[20px]'>
+            <div className='grid grid-cols-3 gap-[20px] mt-[30px]'>
                 {
                     datas?.map((data, index) => {
                         return <div key={index} className='rounded-[4px] overflow-hidden cursor-pointer group'>

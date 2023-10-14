@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { BsThreeDots, BsChevronRight, BsPlayCircle, BsHeart } from 'react-icons/bs';
+import { BsChevronRight } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 import top1 from '~/assets/imgs/top-1.jpg';
 import top2 from '~/assets/imgs/top-2.jpg';
@@ -8,6 +9,7 @@ import top4 from '~/assets/imgs/top-4.jpg';
 import top5 from '~/assets/imgs/top-5.jpg';
 
 import Card from '~/components/Card';
+import config from '~/config';
 
 const dataTop = [
     {
@@ -126,10 +128,10 @@ function Top() {
         <div className="text-[#fff] mt-[40px]">
             <div className="mt-[18px] flex justify-between">
                 <h1 className="text-[18px] capitalize font-bold">Top 100</h1>
-                <div className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
+                <Link to={config.routes.top100} className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
                     <div className="uppercase text-[12px]">Tất cả</div>
                     <div className='text-[18px] ml-[4px]'><BsChevronRight /></div>
-                </div>
+                </Link>
             </div>
             <div className="grid grid-cols-5 gap-[20px] mt-[20px]">
                 {datas?.map((data, index) => {

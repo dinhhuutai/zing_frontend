@@ -4,6 +4,7 @@ import DefaultLayout from './layouts/DefaultLayout';
 import { routes } from './routes';
 import ProtecteRouterLogin from './routing/ProtecteRouterLogin';
 
+
 function App() {
     return (
         <Router>
@@ -12,7 +13,7 @@ function App() {
                     return (
                         <Route
                             key={index}
-                            path={route.path}
+                            path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.path}
                             element={
                                 route.login ? (
                                     <ProtecteRouterLogin />
@@ -26,7 +27,7 @@ function App() {
                             }
                         >
                             <Route
-                                path={route.path}
+                                path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.path}
                                 element={
                                     <DefaultLayout>
                                         <route.component />

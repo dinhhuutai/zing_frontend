@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { BsChevronRight, BsPlayCircle, BsChevronLeft } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import rank1 from '~/assets/imgs/rank-1.jpg';
+import config from "~/config";
 
 const dataRank = [
     {
@@ -154,18 +156,18 @@ function Rank() {
         <div className="text-[#fff] mt-[40px]">
             <div className="mt-[18px] flex justify-between">
                 <h1 className="text-[18px] capitalize font-bold">BXH Nhạc mới</h1>
-                <div className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
+                <Link to={config.routes.releaseNew} className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
                     <div className="uppercase text-[12px]">Tất cả</div>
                     <div className='text-[18px] ml-[4px]'><BsChevronRight /></div>
-                </div>
+                </Link>
             </div>
             <div className="mt-[20px] relative w-full h-[130px]">
-                <div onClick={handleRight} className="flex hover:opacity-[0.6] cursor-pointer absolute text-[#fff] top-[50%] translate-y-[-50%] right-[0px] translate-x-[50%] text-[18px] z-[5] h-[30px] w-[30px] bg-[hsla(0,0%,100%,.1)] items-center justify-center rounded-[50%]">
+                <button onClick={handleRight} className="flex hover:opacity-[0.6] cursor-pointer absolute text-[#fff] top-[50%] translate-y-[-50%] right-[0px] translate-x-[50%] text-[18px] z-[5] h-[30px] w-[30px] bg-[hsla(0,0%,100%,.1)] items-center justify-center rounded-[50%]">
                     <BsChevronRight />
-                </div>
-                <div onClick={handleLeft} className="flex hover:opacity-[0.6] cursor-pointer absolute text-[#fff] top-[50%] translate-y-[-50%] left-[0px] translate-x-[-50%] text-[18px] z-[5] h-[30px] w-[30px] bg-[hsla(0,0%,100%,.1)] items-center justify-center rounded-[50%]">
+                </button>
+                <button onClick={handleLeft} className="flex hover:opacity-[0.6] cursor-pointer absolute text-[#fff] top-[50%] translate-y-[-50%] left-[0px] translate-x-[-50%] text-[18px] z-[5] h-[30px] w-[30px] bg-[hsla(0,0%,100%,.1)] items-center justify-center rounded-[50%]">
                     <BsChevronLeft />
-                </div>
+                </button>
                 <div className="w-full relative h-full overflow-hidden">
                     <div className={`w-[96%] flex absolute gap-[2%] ${indexRank === 0 ? "transition-all duration-[0.3s] ease-linear" : "transition-all duration-[0.6s] ease-linear"} ${indexRank === 1 ? 'translate-x-[-106%]' : indexRank === 2 ? "translate-x-[-212%]" : ""}`}>
                         {
@@ -200,9 +202,9 @@ function Rank() {
                                 </div>
                             })
                         }
-                        <div className="group w-[33.33%] shrink-0 cursor-pointer flex bg-[hsla(0,0%,100%,0.1)] py-[10px] px-[10px] rounded-[4px] justify-center items-center">
+                        <Link to={config.routes.releaseNew} className="group w-[33.33%] shrink-0 cursor-pointer flex bg-[hsla(0,0%,100%,0.1)] py-[10px] px-[10px] rounded-[4px] justify-center items-center">
                             <span className='uppercase text-[#c273ed]'>xem tất cả</span>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { BsFillPlayFill } from "react-icons/bs";
 import { useEffect, useState } from 'react';
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 import chart1 from '~/assets/imgs/chart-1.jpg';
 import chart2 from '~/assets/imgs/chart-2.jpg';
@@ -552,7 +552,7 @@ function Chart() {
 
 
     return (
-        <div className="bg-[rgba(51,16,76,.95)] p-[20px] rounded-[4px]">
+        <div className="bg-[rgba(51,16,76,.95)] p-[20px] rounded-[4px] mt-[40px]">
             <div className="flex text-[28px] font-[700] items-center">
                 <h1 className="fontTextChart cursor-pointer">#zingchart</h1>
                 <div className="hover:opacity-[.8] cursor-pointer text-[16px] ml-[16px] h-[20px] w-[20px] flex justify-center items-center bg-[#fff] rounded-[50%]">
