@@ -12,6 +12,9 @@ const routes = {
     top100: '/top100',
     login: '/login',
     playlistNew: '/playlist-new',
+    newReleaseSong: '/new-release/song',
+    newReleaseAlbum: '/new-release/album',
+    album: '/album',
 }
 
 export default routes

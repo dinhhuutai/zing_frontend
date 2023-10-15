@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { BsHeart, BsPlayCircle, BsThreeDots } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import near1 from '~/assets/imgs/near-1.jpg';
 import near2 from '~/assets/imgs/near-2.jpg'
 import near3 from '~/assets/imgs/near-3.jpg'
 import near4 from '~/assets/imgs/near-4.jpg'
 import near5 from '~/assets/imgs/near-5.jpg'
+import config from "~/config";
 
 
 const recentlyData = [
@@ -47,7 +49,7 @@ function Recently() {
             <div className='grid grid-cols-7 gap-[16px] mt-[16px]'>
                 {
                     datas.map((recently, index) => {
-                        return <div key={index} className=''>
+                        return <Link to={`${config.routes.album}/123`} key={index} className=''>
                             <div className='rounded-[6px] overflow-hidden cursor-pointer group relative'>
                                 <div className='absolute w-full h-full z-[1] hidden group-hover:flex justify-around items-center px-[6px]'>
                                     <div className="text-[14px] h-[26px] w-[26px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
@@ -63,7 +65,7 @@ function Recently() {
                                 <img src={recently.img} alt={recently.name} className='group-hover:scale-[1.1] group-hover:brightness-50 transition-all ease-linear duration-[.2s]' />
                             </div>
                             <span className='hover:text-[#c273ed] capitalize cursor-pointer text-[12px] mt-[6px] block font-bold'>{recently.name}</span>
-                        </div>
+                        </Link>
                     })
                 }
             </div>

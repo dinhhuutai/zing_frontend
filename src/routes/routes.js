@@ -13,6 +13,9 @@ import HubChild from "~/pages/Hub/page/HubChild";
 import Top100 from "~/pages/Top100";
 import Login from "~/pages/Login";
 import PlaylistNew from "~/pages/PlaylistNew/PlaylistNew";
+import NewReleaseSong from '~/pages/Explore/NewRelease/page/Song';
+import NewReleaseAlbum from '~/pages/Explore/NewRelease/page/Album';
+import Album from "~/pages/Album";
 
 export const routes = [
     {
@@ -84,6 +87,22 @@ export const routes = [
         path: config.routes.playlistNew,
         component: PlaylistNew,
         login: true,
+    },
+    {
+        path: config.routes.newReleaseSong,
+        component: NewReleaseSong,
+        login: false,
+    },
+    {
+        path: config.routes.newReleaseAlbum,
+        component: NewReleaseAlbum,
+        login: false,
+    },
+    {
+        path: config.routes.album,
+        component: Album,
+        login: false,
+        isParamsIdAlbum: true,
     },
 ];
 

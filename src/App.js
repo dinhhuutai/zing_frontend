@@ -13,7 +13,7 @@ function App() {
                     return (
                         <Route
                             key={index}
-                            path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.path}
+                            path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.isParamsIdAlbum ? `${route.path}/:id` : route.path}
                             element={
                                 route.login ? (
                                     <ProtecteRouterLogin />
@@ -27,7 +27,7 @@ function App() {
                             }
                         >
                             <Route
-                                path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.path}
+                                path={route.isParamsIdZingChart ? `${route.path}/:id` : route.isParamsIdHub ? `${route.path}/:name/:id` : route.isParamsIdAlbum ? `${route.path}/:id` : route.path}
                                 element={
                                     <DefaultLayout>
                                         <route.component />

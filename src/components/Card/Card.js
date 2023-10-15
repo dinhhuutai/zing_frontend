@@ -1,36 +1,42 @@
-import { BsThreeDots, BsChevronRight, BsPlayCircle, BsHeart } from "react-icons/bs";
+import { BsThreeDots, BsPlayCircle, BsHeart } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import config from "~/config";
 
 
 function Card({data, type }) {
     return (
         <div>
-            <div className="overflow-hidden rounded-[4px] cursor-pointer relative group">
-                <div className="absolute w-full h-full z-[1] hidden group-hover:flex justify-around items-center px-[6px]">
-                    <div className="text-[16px] h-[28px] w-[28px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
-                        <BsHeart />
+            <Link to={`${config.routes.album}/123`}>
+                <div className="overflow-hidden rounded-[4px] cursor-pointer relative group">
+                    <div className="absolute w-full h-full z-[1] hidden group-hover:flex justify-around items-center px-[6px]">
+                        <div className="text-[16px] h-[28px] w-[28px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
+                            <BsHeart />
+                        </div>
+                        <div className="text-[40px] hover:opacity-[0.7]">
+                            <BsPlayCircle />
+                        </div>
+                        <div className="text-[16px] h-[28px] w-[28px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
+                            <BsThreeDots />
+                        </div>
                     </div>
-                    <div className="text-[40px] hover:opacity-[0.7]">
-                        <BsPlayCircle />
-                    </div>
-                    <div className="text-[16px] h-[28px] w-[28px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
-                        <BsThreeDots />
-                    </div>
+                    <img
+                        className="group-hover:scale-[1.1] group-hover:brightness-50 w-full h-full bg-cover transition-all ease-linear duration-[.4s]"
+                        src={data.img}
+                        alt={data.perface}
+                    />
                 </div>
-                <img
-                    className="group-hover:scale-[1.1] group-hover:brightness-50 w-full h-full bg-cover transition-all ease-linear duration-[.4s]"
-                    src={data.img}
-                    alt={data.perface}
-                />
-            </div>
+            </Link>
             {
                 type?.perfaceSinger &&
-                <span className="dotThreeHiddenText2 cursor-pointer hover:text-[#c273ed] h-[16px] overflow-hidden mt-[6px] text-[#fff] text-[13px] font-normal leading-[16px]">
-                    {data.perface}
-                </span>
+                <Link to={`${config.routes.album}/123`}>
+                    <span className="dotThreeHiddenText2 cursor-pointer hover:text-[#c273ed] h-[16px] overflow-hidden mt-[6px] text-[#fff] text-[13px] font-normal leading-[16px]">
+                        {data.perface}
+                    </span>
+                </Link>
             }
             {
                 type?.perface &&
-                <span className="dotThreeHiddenText h-[34px] overflow-hidden mt-[6px] text-[hsla(0,0%,100%,0.5)] text-[13px] font-normal leading-[16px]">
+                <span className="dotThreeHiddenText cursor-default h-[34px] overflow-hidden mt-[6px] text-[hsla(0,0%,100%,0.5)] text-[13px] font-normal leading-[16px]">
                     {data.perface}
                 </span>
             }

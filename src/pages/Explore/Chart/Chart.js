@@ -6,6 +6,8 @@ import { LineChart, Line, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } f
 import chart1 from '~/assets/imgs/chart-1.jpg';
 import chart2 from '~/assets/imgs/chart-2.jpg';
 import chart3 from '~/assets/imgs/chart-3.jpg';
+import { Link } from "react-router-dom";
+import config from "~/config";
 
 const dataChartApi = {
     items: {
@@ -595,9 +597,9 @@ function Chart() {
                             })
                         }
                     </div>
-                    <div className="flex justify-center mt-[16px] items-center">
+                    <Link to={config.routes.zingChart} className="flex justify-center mt-[16px] items-center">
                         <button className='hover:bg-[hsla(0,0%,100%,0.2)] px-[20px] py-[4px] rounded-[20px] outline-none text-[#fff] border-[1px] border-solid border-[#fff]'>Xem thêm</button>
-                    </div>
+                    </Link>
                 </div>
                 <div className="col-span-7">
                     <ResponsiveContainer width="100%" height="100%">

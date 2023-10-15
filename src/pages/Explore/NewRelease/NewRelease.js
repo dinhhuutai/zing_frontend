@@ -5,6 +5,8 @@ import { BsFillPlayFill, BsThreeDots, BsChevronRight } from "react-icons/bs";
 import newRelease1 from '~/assets/imgs/new-release-1.jpg'
 import newRelease2 from '~/assets/imgs/new-release-2.jpg'
 import newRelease3 from '~/assets/imgs/new-release-3.jpg'
+import { Link } from 'react-router-dom';
+import config from '~/config';
 
 const dataNewReleaseAll = [
     {
@@ -363,10 +365,10 @@ function NewRelease() {
                     <button onClick={() => setTypeRelease('vn')} className={typeRelease === 'vn' ? 'uppercase text-[12px] min-w-[90px] py-[2px] border-[1px] border-solid bg-[#9b4de0] border-[#9b4de0] rounded-[20px] hover:brightness-[0.8]' : 'uppercase text-[12px] min-w-[90px] py-[2px] border-[1px] border-solid border-[#9b4de0] rounded-[20px] hover:brightness-[0.8]'}>Việt Nam</button>
                     <button onClick={() => setTypeRelease('qt')} className={typeRelease === 'qt' ? 'uppercase text-[12px] min-w-[90px] py-[2px] border-[1px] border-solid bg-[#9b4de0] border-[#9b4de0] rounded-[20px] hover:brightness-[0.8]' : 'uppercase text-[12px] min-w-[90px] py-[2px] border-[1px] border-solid border-[#9b4de0] rounded-[20px] hover:brightness-[0.8]'}>Quốc tế</button>
                 </div>
-                <div className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
+                <Link to={`${config.routes.newReleaseSong}?filter=${typeRelease === 'qt' ? "usuk" : typeRelease}`} className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
                     <div className="uppercase text-[12px]">Tất cả</div>
                     <div className='text-[18px] ml-[4px]'><BsChevronRight /></div>
-                </div>
+                </Link>
             </div>
             <div className='grid grid-cols-3 gap-[10px] mt-[20px]'>
                 {
