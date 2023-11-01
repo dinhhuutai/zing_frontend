@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, Navigate } from "react-router-dom";
 import config from "~/config";
 
+import {userSelector} from '~/redux/selectors';
+
 function ProtecteRouterLogin() {
 
-    const [login, setLogin] = useState(false);
+    const tmp = useSelector(userSelector);
+    const [user, setUser] = useState(tmp);
+    
+    useEffect(() => {
+        setUser(tmp)
+    }, [tmp])
+
 
     return (
-        login ? <Outlet /> : <Navigate to={config.routes.login} />
+        user.login.currentUser ? <Outlet /> : <Navigate to={config.routes.login} />
     );
 }
 

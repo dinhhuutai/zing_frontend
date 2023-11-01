@@ -376,7 +376,7 @@ const dataChartApi = {
                 hour: "12",
                 counter: 6553
             }
-        ]
+        ],
     },
     RTChart: {
         items: [

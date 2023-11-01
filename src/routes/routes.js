@@ -12,10 +12,19 @@ import Hub from "~/pages/Hub";
 import HubChild from "~/pages/Hub/page/HubChild";
 import Top100 from "~/pages/Top100";
 import Login from "~/pages/Login";
+import Register from '~/pages/Register';
 import PlaylistNew from "~/pages/PlaylistNew/PlaylistNew";
 import NewReleaseSong from '~/pages/Explore/NewRelease/page/Song';
 import NewReleaseAlbum from '~/pages/Explore/NewRelease/page/Album';
 import Album from "~/pages/Album";
+
+import MyMusicHistory from "~/pages/MyMusicHistory";
+import MyMusicSongFavourite from "~/pages/MyMusicSongFavourite";
+import MyMusicLibraryPlaylist from "~/pages/MyMusicLibraryPlaylist";
+import MyMusicAlbum from "~/pages/MyMusicAlbum";
+import MyMusicSongUpload from "~/pages/MyMusicSongUpload";
+
+import AdminDashboard from "~/pagesAdmin/Dashboard";
 
 export const routes = [
     {
@@ -84,6 +93,12 @@ export const routes = [
         isLogin: true,
     },
     {
+        path: config.routes.register,
+        component: Register,
+        login: false,
+        isLogin: true,
+    },
+    {
         path: config.routes.playlistNew,
         component: PlaylistNew,
         login: true,
@@ -104,9 +119,38 @@ export const routes = [
         login: false,
         isParamsIdAlbum: true,
     },
+    {
+        path: config.routes.myMusicHistory,
+        component: MyMusicHistory,
+        login: true,
+    },
+    {
+        path: config.routes.myMusicSongFavourite,
+        component: MyMusicSongFavourite,
+        login: true,
+    },
+    {
+        path: config.routes.myMusicLibraryPlaylist,
+        component: MyMusicLibraryPlaylist,
+        login: true,
+    },
+    {
+        path: config.routes.myMusicAlbum,
+        component: MyMusicAlbum,
+        login: true,
+    },
+    {
+        path: config.routes.myMusicSongUpload,
+        component: MyMusicSongUpload,
+        login: true,
+    },
 ];
 
 
 export const routesAdmin = [
-
+    {
+        path: config.routes.adminDashboard,
+        component: AdminDashboard,
+        login: true,
+    }
 ];
