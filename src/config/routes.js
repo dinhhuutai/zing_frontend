@@ -23,7 +23,32 @@ const routes = {
     myMusicAlbum: '/mymusic/album',
     myMusicSongUpload: '/mymusic/song/upload',
 
-    adminDashboard: '/admin/dashboard',
+    adminAnalytics: '/admin/menu/dashboards/analytics',
+    adminChartArea: '/admin/menu/dashboards/chart-area',
+
+    adminExplore: '/admin/menu/pages/explore',
+    adminHub: '/admin/menu/pages/hub',
+
+    adminMailBox: '/admin/menu/application/mailbox',
+    adminChat: '/admin/menu/application/chat',
+    adminSection: '/admin/menu/application/section',
+
+    adminArtist: '/admin/manage/artist/list',
+    adminArtistCreate: '/admin/manage/artist/create',
+    adminSong: '/admin/manage/song/list',
+    adminSongCreate: '/admin/manage/song/create',
+    adminPlaylist: '/admin/manage/playlist/list',
+    adminPlaylistCreate: '/admin/manage/playlist/create',
+    adminAlbum: '/admin/manage/album/list',
+    adminAlbumCreate: '/admin/manage/album/create',
+    adminUser: '/admin/manage/user/list',
+    adminUserCreate: '/admin/manage/user/create',
+    adminGenre: '/admin/manage/genre/list',
+    adminGenreCreate: '/admin/manage/genre/create',
+    adminPartner: '/admin/manage/partner/list',
+    adminPartnerCreate: '/admin/manage/partner/create',
+    adminWeekchart: '/admin/manage/weekchart/list',
+    adminWeekchartCreate: '/admin/manage/weekchart/create',
 }
 
 export default routes

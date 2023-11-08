@@ -10,6 +10,7 @@
     "@tippyjs/react": "^4.2.6",
     "@types/jwt-decode": "^3.1.0",
     "axios": "^1.6.0",
+    "ckeditor4-react": "^4.3.0",
     "dotenv": "^16.3.1",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",

@@ -24,7 +24,31 @@ import MyMusicLibraryPlaylist from "~/pages/MyMusicLibraryPlaylist";
 import MyMusicAlbum from "~/pages/MyMusicAlbum";
 import MyMusicSongUpload from "~/pages/MyMusicSongUpload";
 
-import AdminDashboard from "~/pagesAdmin/Dashboard";
+import AdminAnalytics from "~/pagesAdmin/Menu/Dashboards/Analytics";
+import AdminChartArea from "~/pagesAdmin/Menu/Dashboards/ChartArea";
+import AdminExplore from '~/pagesAdmin/Menu/Pages/Explore';
+import AdminHub from '~/pagesAdmin/Menu/Pages/Hub';
+import AdminMailBox from '~/pagesAdmin/Menu/Applications/Mailbox';
+import AdminChat from '~/pagesAdmin/Menu/Applications/Chat';
+import AdminSection from '~/pagesAdmin/Menu/Applications/FAQSection';
+
+import AdminArtist from '~/pagesAdmin/Manage/Artist/List';
+import AdminArtistCreate from '~/pagesAdmin/Manage/Artist/Create';
+import AdminSong from '~/pagesAdmin/Manage/Song/List';
+import AdminSongCreate from '~/pagesAdmin/Manage/Song/Create';
+import AdminPlaylist from '~/pagesAdmin/Manage/Playlist/List';
+import AdminPlaylistCreate from '~/pagesAdmin/Manage/Playlist/Create';
+import AdminAlbum from '~/pagesAdmin/Manage/Album/List';
+import AdminAlbumCreate from '~/pagesAdmin/Manage/Album/Create';
+import AdminUser from '~/pagesAdmin/Manage/User/List';
+import AdminUserCreate from '~/pagesAdmin/Manage/User/Create';
+import AdminGenre from '~/pagesAdmin/Manage/Genre/List';
+import AdminGenreCreate from '~/pagesAdmin/Manage/Genre/Create';
+import AdminPartner from '~/pagesAdmin/Manage/Partner/List';
+import AdminPartnerCreate from '~/pagesAdmin/Manage/Partner/Create';
+import AdminWeekchart from '~/pagesAdmin/Manage/Weekchart/List';
+import AdminWeekchartCreate from '~/pagesAdmin/Manage/Weekchart/Create';
+
 
 export const routes = [
     {
@@ -149,8 +173,118 @@ export const routes = [
 
 export const routesAdmin = [
     {
-        path: config.routes.adminDashboard,
-        component: AdminDashboard,
+        path: config.routes.adminAnalytics,
+        component: AdminAnalytics,
         login: true,
-    }
+    },
+    {
+        path: config.routes.adminChartArea,
+        component: AdminChartArea,
+        login: true,
+    },
+    {
+        path: config.routes.adminExplore,
+        component: AdminExplore,
+        login: true,
+    },
+    {
+        path: config.routes.adminHub,
+        component: AdminHub,
+        login: true,
+    },
+    {
+        path: config.routes.adminMailBox,
+        component: AdminMailBox,
+        login: true,
+    },
+    {
+        path: config.routes.adminChat,
+        component: AdminChat,
+        login: true,
+    },
+    {
+        path: config.routes.adminSection,
+        component: AdminSection,
+        login: true,
+    },
+    {
+        path: config.routes.adminArtist,
+        component: AdminArtist,
+        login: true,
+    },
+    {
+        path: config.routes.adminArtistCreate,
+        component: AdminArtistCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminSong,
+        component: AdminSong,
+        login: true,
+    },
+    {
+        path: config.routes.adminSongCreate,
+        component: AdminSongCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminPlaylist,
+        component: AdminPlaylist,
+        login: true,
+    },
+    {
+        path: config.routes.adminPlaylistCreate,
+        component: AdminPlaylistCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminAlbum,
+        component: AdminAlbum,
+        login: true,
+    },
+    {
+        path: config.routes.adminAlbumCreate,
+        component: AdminAlbumCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminUser,
+        component: AdminUser,
+        login: true,
+    },
+    {
+        path: config.routes.adminUserCreate,
+        component: AdminUserCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminGenre,
+        component: AdminGenre,
+        login: true,
+    },
+    {
+        path: config.routes.adminGenreCreate,
+        component: AdminGenreCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminPartner,
+        component: AdminPartner,
+        login: true,
+    },
+    {
+        path: config.routes.adminPartnerCreate,
+        component: AdminPartnerCreate,
+        login: true,
+    },
+    {
+        path: config.routes.adminWeekchart,
+        component: AdminWeekchart,
+        login: true,
+    },
+    {
+        path: config.routes.adminWeekchartCreate,
+        component: AdminWeekchartCreate,
+        login: true,
+    },
 ];

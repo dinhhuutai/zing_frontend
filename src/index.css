@@ -76,6 +76,44 @@
     }
 }
 
+@layer components {
+    .rotateZ-90deg {
+        transform: rotateZ(90deg);
+    }
+
+    .box-shadow-admin-path {
+        box-shadow: 0px 0px 6px -2px #827a7a;
+    }
+
+    .box-shadow-admin-notice {
+        box-shadow: 0px 0px 8px -2px #a39595;
+    }
+
+    .scrollbar-admin-sidebar::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+        display: block;
+    }
+    
+    .scrollbar-admin-sidebar::-webkit-scrollbar-track {
+        background: #fff;
+    }
+    
+    .scrollbar-admin-sidebar::-webkit-scrollbar-thumb {
+        background: #DFDFDF;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+
+    .scrollbar-admin-sidebar-none::-webkit-scrollbar {
+        display: none;
+    }
+
+}
+
 
 :root {
     --height-header: 70px;
@@ -86,6 +124,9 @@
     --bg-color-header: #170f23;
     --bg-color-controls: #130c1c;
     --bg-color-page: #170f23;
+
+    --admin-height-header: 60px;
+    --admin-width-sidebar: 280px;
 }
 
 ::-webkit-scrollbar {

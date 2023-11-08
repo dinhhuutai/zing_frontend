@@ -53,7 +53,7 @@ function Login() {
                     }));
 
                     if(res.data.user.isAdmin){
-                        navigate(config.routes.adminDashboard);
+                        navigate(config.routes.adminAnalytics);
                     } else {
                         navigate(config.routes.explore);
                     }

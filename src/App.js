@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import DefaultLayout from './layouts/DefaultLayout';
+import DefaultLayoutAdmin from './layoutsAdmin/DefaultLayout';
 import { routes, routesAdmin } from './routes';
 import ProtecteRouterLogin from './routing/ProtecteRouterLogin';
 import ProtectedRouteAdmin from './routing/ProtectedRouteAdmin';
@@ -8,7 +9,6 @@ import config from './config';
 import ProtectedCheckUser from './routing/ProtectedCheckUser';
 
 function App() {
-
     return (
         <Router>
             <Routes>
@@ -57,12 +57,22 @@ function App() {
                             </Route>
                         );
                     })}
-    
-                    <Route path="/admin" element={<Navigate to={config.routes.adminDashboard} />} />
-    
+
+                    <Route path="/admin" element={<Navigate to={config.routes.adminAnalytics} />} />
+
                     <Route path="/admin" element={<ProtectedRouteAdmin />}>
                         {routesAdmin.map((route, index) => {
-                            return <Route key={index} path={route.path} element={<route.component />} />;
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <DefaultLayoutAdmin>
+                                            <route.component />
+                                        </DefaultLayoutAdmin>
+                                    }
+                                />
+                            );
                         })}
                     </Route>
                 </Route>
