@@ -65,7 +65,11 @@ function App() {
                             return (
                                 <Route
                                     key={index}
-                                    path={route.path}
+                                    path={
+                                        route.addId ?
+                                        `${route.path}/:id` :
+                                        route.path
+                                    }
                                     element={
                                         <DefaultLayoutAdmin>
                                             <route.component />

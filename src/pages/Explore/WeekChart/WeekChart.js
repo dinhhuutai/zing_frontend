@@ -35,7 +35,7 @@ function WeekChart() {
                 {
                     datas?.map((data, index) => {
                         return <Link to={`${data.name === 'vn' ? config.routes.zingChartVietNam+'/123' : data.name === 'kpop' ? config.routes.zingChartKpop+'/123' : data.name === 'usuk' ? config.routes.zingChartUsUk+'/123' : ''}`} key={index} className='rounded-[4px] overflow-hidden cursor-pointer group'>
-                            <img alt={data.name} src={data.img} className='group-hover:scale-[1.2] transition-all duration-[.8s]' />
+                            <img alt={data.name} src={data.img} className='group-hover:scale-[1.2] object-cover transition-all duration-[.8s]' />
                         </Link>
                     })
                 }

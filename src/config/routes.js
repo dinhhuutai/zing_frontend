@@ -35,20 +35,28 @@ const routes = {
 
     adminArtist: '/admin/manage/artist/list',
     adminArtistCreate: '/admin/manage/artist/create',
+    adminArtistUpdate: '/admin/manage/artist/update',
     adminSong: '/admin/manage/song/list',
     adminSongCreate: '/admin/manage/song/create',
+    adminSongUpdate: '/admin/manage/song/update',
     adminPlaylist: '/admin/manage/playlist/list',
     adminPlaylistCreate: '/admin/manage/playlist/create',
+    adminPlaylistUpdate: '/admin/manage/playlist/update',
     adminAlbum: '/admin/manage/album/list',
     adminAlbumCreate: '/admin/manage/album/create',
+    adminAlbumUpdate: '/admin/manage/album/update',
     adminUser: '/admin/manage/user/list',
     adminUserCreate: '/admin/manage/user/create',
+    adminUserUpdate: '/admin/manage/user/update',
     adminGenre: '/admin/manage/genre/list',
     adminGenreCreate: '/admin/manage/genre/create',
+    adminGenreUpdate: '/admin/manage/genre/update',
     adminPartner: '/admin/manage/partner/list',
     adminPartnerCreate: '/admin/manage/partner/create',
+    adminPartnerUpdate: '/admin/manage/partner/update',
     adminWeekchart: '/admin/manage/weekchart/list',
     adminWeekchartCreate: '/admin/manage/weekchart/create',
+    adminWeekchartUpdate: '/admin/manage/weekchart/update',
 }
 
 export default routes

@@ -9,11 +9,13 @@ export default createSlice({
         status: false,   // notice lỗi hay thành công
         title: '',
         text: '',
+        processing: false,
     },
     reducers: {
         hiddenNotice: (state) => {
             state.state = false;
             state.hidden = true;
+            state.processing = false;
         },
         errorNotice: (state, action) => {
             state.state = true;
@@ -21,6 +23,7 @@ export default createSlice({
             state.title = 'fail';
             state.text = action.payload;
             state.hidden = true;
+            state.processing = false;
         },
         successNotice: (state, action) => {
             state.state = true;
@@ -28,6 +31,12 @@ export default createSlice({
             state.title = 'success';
             state.text = action.payload;
             state.hidden = true;
+            state.processing = false;
+        },
+        processingNotice: (state, action) => {
+            state.processing = true;
+            state.title = 'Processing';
+            state.text = action.payload;
         }
     }
 })

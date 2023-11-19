@@ -34,20 +34,28 @@ import AdminSection from '~/pagesAdmin/Menu/Applications/FAQSection';
 
 import AdminArtist from '~/pagesAdmin/Manage/Artist/List';
 import AdminArtistCreate from '~/pagesAdmin/Manage/Artist/Create';
+import AdminArtistUpdate from '~/pagesAdmin/Manage/Artist/Update';
 import AdminSong from '~/pagesAdmin/Manage/Song/List';
 import AdminSongCreate from '~/pagesAdmin/Manage/Song/Create';
+import AdminSongUpdate from '~/pagesAdmin/Manage/Song/Update';
 import AdminPlaylist from '~/pagesAdmin/Manage/Playlist/List';
 import AdminPlaylistCreate from '~/pagesAdmin/Manage/Playlist/Create';
+import AdminPlaylistUpdate from '~/pagesAdmin/Manage/Playlist/Update';
 import AdminAlbum from '~/pagesAdmin/Manage/Album/List';
 import AdminAlbumCreate from '~/pagesAdmin/Manage/Album/Create';
+import AdminAlbumUpdate from '~/pagesAdmin/Manage/Album/Update';
 import AdminUser from '~/pagesAdmin/Manage/User/List';
 import AdminUserCreate from '~/pagesAdmin/Manage/User/Create';
+import AdminUserUpdate from '~/pagesAdmin/Manage/User/Update';
 import AdminGenre from '~/pagesAdmin/Manage/Genre/List';
 import AdminGenreCreate from '~/pagesAdmin/Manage/Genre/Create';
+import AdminGenreUpdate from '~/pagesAdmin/Manage/Genre/Update';
 import AdminPartner from '~/pagesAdmin/Manage/Partner/List';
 import AdminPartnerCreate from '~/pagesAdmin/Manage/Partner/Create';
+import AdminPartnerUpdate from '~/pagesAdmin/Manage/Partner/Update';
 import AdminWeekchart from '~/pagesAdmin/Manage/Weekchart/List';
 import AdminWeekchartCreate from '~/pagesAdmin/Manage/Weekchart/Create';
+import AdminWeekchartUpdate from '~/pagesAdmin/Manage/Weekchart/Update';
 
 
 export const routes = [
@@ -218,6 +226,12 @@ export const routesAdmin = [
         login: true,
     },
     {
+        path: config.routes.adminArtistUpdate,
+        component: AdminArtistUpdate,
+        login: true,
+        addId: true,
+    },
+    {
         path: config.routes.adminSong,
         component: AdminSong,
         login: true,
@@ -226,6 +240,12 @@ export const routesAdmin = [
         path: config.routes.adminSongCreate,
         component: AdminSongCreate,
         login: true,
+    },
+    {
+        path: config.routes.adminSongUpdate,
+        component: AdminSongUpdate,
+        login: true,
+        addId: true,
     },
     {
         path: config.routes.adminPlaylist,
@@ -238,6 +258,12 @@ export const routesAdmin = [
         login: true,
     },
     {
+        path: config.routes.adminPlaylistUpdate,
+        component: AdminPlaylistUpdate,
+        login: true,
+        addId: true,
+    },
+    {
         path: config.routes.adminAlbum,
         component: AdminAlbum,
         login: true,
@@ -246,6 +272,12 @@ export const routesAdmin = [
         path: config.routes.adminAlbumCreate,
         component: AdminAlbumCreate,
         login: true,
+    },
+    {
+        path: config.routes.adminAlbumUpdate,
+        component: AdminAlbumUpdate,
+        login: true,
+        addId: true,
     },
     {
         path: config.routes.adminUser,
@@ -258,6 +290,12 @@ export const routesAdmin = [
         login: true,
     },
     {
+        path: config.routes.adminUserUpdate,
+        component: AdminUserUpdate,
+        login: true,
+        addId: true,
+    },
+    {
         path: config.routes.adminGenre,
         component: AdminGenre,
         login: true,
@@ -266,6 +304,12 @@ export const routesAdmin = [
         path: config.routes.adminGenreCreate,
         component: AdminGenreCreate,
         login: true,
+    },
+    {
+        path: config.routes.adminGenreUpdate,
+        component: AdminGenreUpdate,
+        login: true,
+        addId: true,
     },
     {
         path: config.routes.adminPartner,
@@ -278,6 +322,12 @@ export const routesAdmin = [
         login: true,
     },
     {
+        path: config.routes.adminPartnerUpdate,
+        component: AdminPartnerUpdate,
+        login: true,
+        addId: true,
+    },
+    {
         path: config.routes.adminWeekchart,
         component: AdminWeekchart,
         login: true,
@@ -286,5 +336,11 @@ export const routesAdmin = [
         path: config.routes.adminWeekchartCreate,
         component: AdminWeekchartCreate,
         login: true,
+    },
+    {
+        path: config.routes.adminWeekchartUpdate,
+        component: AdminWeekchartUpdate,
+        login: true,
+        addId: true,
     },
 ];

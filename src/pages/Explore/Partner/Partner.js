@@ -85,7 +85,7 @@ function Partner() {
                 {datas?.map((data, index) => {
                     return (
                         <div key={index} className="bg-[#fff] flex items-center px-[20px] py-[4px] rounded-[6px]">
-                            <img alt={data.name} src={data.img} className="" />
+                            <img className="h-[60px] w-[60px] object-contain" alt={data.name} src={data.img} />
                         </div>
                     );
                 })}
