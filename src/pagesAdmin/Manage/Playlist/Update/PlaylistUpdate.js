@@ -37,6 +37,8 @@ function PlaylistUpdate() {
     const [listIdSong, setListIdSong] = useState([]);
     const [listSelectSong, setListSelectSong] = useState([]);
 
+    const [onlyArtist, setOnlyArtist] = useState(false);
+
     const { id } = useParams();
 
     const refName = useRef();
@@ -119,6 +121,7 @@ function PlaylistUpdate() {
                 image: radioUp && !notChangeImg ? resLinkImg.data.link : image,
                 genreId: listIdGenre,
                 songs: listIdSong,
+                onlyArtist,
             };
 
             const res = await axios.put(`${process.env.REACT_APP_API_URL}/v1/playlist/update/${id}`, formData);
@@ -154,6 +157,7 @@ function PlaylistUpdate() {
             setName(res.data.playlist.name);
             setDescription(res.data.playlist.description);
             setImage(res.data.playlist.image);
+            setOnlyArtist(res.data.playlist.onlyArtist);
 
             const listIdGenreNew = res.data.playlist.genreId?.map((c) => c._id);
             setListIdGenre(listIdGenreNew);
@@ -259,6 +263,19 @@ function PlaylistUpdate() {
                                             placeholder="Link Image Artist"
                                         />
                                     )}
+                                </div>
+                            </div>
+                            <div className='mt-[14px]'>
+                                <label>Playlist Of Artist: <span className='text-[red] text-[14px] font-[700]'>*</span></label>
+                                <div className='flex justify-around items-center mt-[6px]'>
+                                    <div className='flex items-center gap-[6px]'>
+                                        <input onClick={() => setOnlyArtist(prev => !prev)} type='radio' checked={onlyArtist} />
+                                        <label>Yes</label>
+                                    </div>
+                                    <div className='flex items-center gap-[6px]'>
+                                        <input onClick={() => setOnlyArtist(prev => !prev)} type='radio' checked={!onlyArtist} />
+                                        <label>No</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

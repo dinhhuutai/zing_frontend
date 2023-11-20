@@ -11,7 +11,7 @@ import config from "~/config";
 
 const dataChartApi = {
     items: {
-        Z6FWCOO0: [
+        'Z6FWCOO0': [
             {
                 time: 1696572000000,
                 hour: "13",
@@ -133,7 +133,7 @@ const dataChartApi = {
                 counter: 22560
             }
         ],
-        Z6EUB99Z: [
+        'Z6EUB99Z': [
             {
                 time: 1696572000000,
                 hour: "13",
@@ -255,7 +255,7 @@ const dataChartApi = {
                 counter: 11669
             }
         ],
-        Z6DCE9OI: [
+        'Z6DCE9OI': [
             {
                 time: 1696572000000,
                 hour: "13",

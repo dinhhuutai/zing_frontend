@@ -238,7 +238,7 @@ function Table({
                             </tr>
                         );
                     }) :
-                    <div className='flex mt-[20px] justify-center w-full font-[600] text-[13px] uppercase text-[#ae9c9c]'>Không có ca sĩ này trong danh sách</div>
+                    <div className='flex mt-[20px] justify-center w-full font-[600] text-[13px] uppercase text-[#ae9c9c]'>Không có user này trong danh sách</div>
                 }
                 </tbody>
             </table>

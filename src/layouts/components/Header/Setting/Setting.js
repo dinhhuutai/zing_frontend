@@ -12,7 +12,6 @@ import config from "~/config";
 import authSlice from "~/redux/slices/authSlice";
 import axios from "axios";
 
-import { axiosJWT } from "~/routing/ProtectedCheckUser";
 
 function Setting() {
 
@@ -30,6 +29,7 @@ function Setting() {
     const handleLogout = async (e) => {
         dispatch(authSlice.actions.logoutStart());
 
+
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/v1/user/logout`);
 
@@ -45,7 +45,10 @@ function Setting() {
                 dispatch(authSlice.actions.loginFailed());
             }
         } catch (error) {
+            dispatch(authSlice.actions.logoutSuccess());
 
+            //window.location.reload();
+            navigate(config.routes.explore);
         }
     }
 

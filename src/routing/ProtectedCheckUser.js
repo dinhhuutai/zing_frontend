@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '~/redux/selectors';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import authSlice from '~/redux/slices/authSlice';
 
 import { jwtDecode } from 'jwt-decode';
+import config from '~/config';
 
 
 // refresh Token
