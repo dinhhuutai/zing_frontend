@@ -430,6 +430,12 @@ function Song() {
     }, [filter]);
 
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
 
     return (
         <div className='px-[50px] pt-[10px] pb-[30px] text-[#fff]'>

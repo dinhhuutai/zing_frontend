@@ -17,6 +17,12 @@ let setTimeoutTmp;
 
 
 function ArtistCreate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [star, setStar] = useState(false);
     const [loadingCreate, setLoadingCreate] = useState(false);
 

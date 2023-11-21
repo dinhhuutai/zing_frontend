@@ -5,121 +5,121 @@ import { Link } from "react-router-dom";
 import rank1 from '~/assets/imgs/rank-1.jpg';
 import config from "~/config";
 
-const dataRank = [
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-    {
-        name: 'Phấn hoa màu son',
-        img: rank1,
-        release: '01.10.2023',
-        singer: [
-            {
-                name: 'H-Kray',
-            },
-            {
-                name: 'Thoại Mỹ',
-            }
-        ],
-    },
-]
+// const dataRank = [
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+//     {
+//         name: 'Phấn hoa màu son',
+//         img: rank1,
+//         release: '01.10.2023',
+//         singer: [
+//             {
+//                 name: 'H-Kray',
+//             },
+//             {
+//                 name: 'Thoại Mỹ',
+//             }
+//         ],
+//     },
+// ]
 
-function Rank() {
+function Rank({data}) {
 
     const [datas, setDatas] = useState([]);
     const [indexRank, setIndexRank] = useState(0);
 
     useEffect(() => {
-        setDatas(dataRank);
-    }, []);
+        setDatas(data);
+    }, [data]);
 
     useEffect(() => {
         const slierRank = setTimeout(() => {
@@ -155,7 +155,7 @@ function Rank() {
     return (
         <div className="text-[#fff] mt-[40px]">
             <div className="mt-[18px] flex justify-between">
-                <h1 className="text-[18px] capitalize font-bold">BXH Nhạc mới</h1>
+                <h1 className="text-[18px] capitalize font-bold">{datas?.title}</h1>
                 <Link to={config.routes.releaseNew} className='hover:text-[#c273ed] cursor-pointer text-[hsla(0,0%,100%,0.5)] flex items-center'>
                     <div className="uppercase text-[12px]">Tất cả</div>
                     <div className='text-[18px] ml-[4px]'><BsChevronRight /></div>
@@ -171,20 +171,20 @@ function Rank() {
                 <div className="w-full relative h-full overflow-hidden">
                     <div className={`w-[96%] flex absolute gap-[2%] ${indexRank === 0 ? "transition-all duration-[0.3s] ease-linear" : "transition-all duration-[0.6s] ease-linear"} ${indexRank === 1 ? 'translate-x-[-106%]' : indexRank === 2 ? "translate-x-[-212%]" : ""}`}>
                         {
-                            datas.map((data, index) => {
+                            datas?.items?.map((item, index) => {
                                 return <div key={index} className="group w-[33.33%] shrink-0 cursor-pointer flex bg-[hsla(0,0%,100%,0.1)] py-[10px] px-[10px] rounded-[4px]">
                                     <div className="w-[100px] h-[100px] overflow-hidden rounded-[4px] relative group/item">
-                                        <img src={data.img} alt={data.name} className="group-hover/item:scale-[1.1] group-hover:brightness-50 transition-all ease-linear duration-[.4s]" />
+                                        <img src={item.thumbnail} alt={item.name} className="group-hover/item:scale-[1.1] group-hover:brightness-50 transition-all ease-linear duration-[.4s]" />
                                         <div className='group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'>
                                             <BsPlayCircle className='hover:opacity-[.8]' />
                                         </div>
                                     </div>
                                     <div className='flex flex-col justify-between ml-[10px] flex-1'>
                                         <div>
-                                            <span className="capitalize">{data.name}</span>
+                                            <span className="capitalize">{item.name}</span>
                                             <div className='text-[12px] text-[hsla(0,0%,100%,0.5)] flex'>
                                                 {
-                                                    data.singer.map((sing, index) => {
+                                                    item?.artists?.map((sing, index) => {
                                                         if(index === 0){
                                                             return <span className='hover:text-[#c273ed] cursor-pointer hover:underline' key={index}>{sing.name}</span>
                                                         } else {
@@ -196,7 +196,7 @@ function Rank() {
                                         </div>
                                         <div className="flex justify-between text-[hsla(0,0%,100%,0.5)] items-end">
                                             <span className="fontTextRank">#{index + 1}</span>
-                                            <span>{data.release}</span>
+                                            <span>{item.release}</span>
                                         </div>
                                     </div>
                                 </div>

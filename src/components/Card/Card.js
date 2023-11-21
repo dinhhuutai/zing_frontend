@@ -6,7 +6,7 @@ import config from "~/config";
 function Card({data, type }) {
     return (
         <div>
-            <Link to={`${config.routes.album}/123`}>
+            <Link to={`${config.routes.album}/${data._id}`}>
                 <div className="overflow-hidden rounded-[4px] cursor-pointer relative group">
                     <div className="absolute w-full h-full z-[1] hidden group-hover:flex justify-around items-center px-[6px]">
                         <div className="text-[16px] h-[28px] w-[28px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">
@@ -21,31 +21,31 @@ function Card({data, type }) {
                     </div>
                     <img
                         className="group-hover:scale-[1.1] group-hover:brightness-50 w-full h-full bg-cover transition-all ease-linear duration-[.4s]"
-                        src={data.img}
-                        alt={data.perface}
+                        src={data.image}
+                        alt={data.name}
                     />
                 </div>
             </Link>
             {
                 type?.perfaceSinger &&
-                <Link to={`${config.routes.album}/123`}>
+                <Link to={`${config.routes.album}/${data._id}`}>
                     <span className="dotThreeHiddenText2 cursor-pointer hover:text-[#c273ed] h-[16px] overflow-hidden mt-[6px] text-[#fff] text-[13px] font-normal leading-[16px]">
-                        {data.perface}
+                        {data.name}
                     </span>
                 </Link>
             }
             {
                 type?.perface &&
                 <span className="dotThreeHiddenText cursor-default h-[34px] overflow-hidden mt-[6px] text-[hsla(0,0%,100%,0.5)] text-[13px] font-normal leading-[16px]">
-                    {data.perface}
+                    {data.name}
                 </span>
             }
             {
                 type?.singer &&
                 <div className='overflow-hidden mt-[6px] h-[34px] leading-[16px]'>
                     <div className="text-[12px] text-[hsla(0,0%,100%,0.5)] flex flex-wrap font-normal">
-                        {data.singer &&
-                            data?.singer.map((sing, index) => {
+                        {data.artists &&
+                            data?.artists.map((sing, index) => {
                                 if (index === 2) {
                                     return (
                                         <span

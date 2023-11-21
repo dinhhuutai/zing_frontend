@@ -20,6 +20,12 @@ let setTimeoutTmp;
 
 
 function GenreCreate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [star, setStar] = useState(false);
     const [loadingCreate, setLoadingCreate] = useState(false);
 

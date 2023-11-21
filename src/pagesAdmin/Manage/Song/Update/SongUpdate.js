@@ -22,6 +22,12 @@ let setTimeoutTmp;
 
 
 function SongUpdate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
 
     const [notChangeImg, setNoChangeImg] = useState(true);
     const [notChangeMusic, setNoChangeMusic] = useState(true);

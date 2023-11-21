@@ -18,6 +18,12 @@ import Alert from '~/components/Alert';
 let setTimeoutTmp;
 
 function PlaylistUpdate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [notChangeImg, setNoChangeImg] = useState(true);
     const [data, setData] = useState();
 

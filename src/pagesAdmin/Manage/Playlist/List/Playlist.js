@@ -15,6 +15,12 @@ import { noticeAdminSelector } from '~/redux/selectors';
 let setTimeoutTmp;
 
 function Playlist() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [star, setStar] = useState(false);
 
     // data table

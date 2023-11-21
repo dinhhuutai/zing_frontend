@@ -24,7 +24,7 @@ function Card({value}) {
             </div>
             <div className={`ml-[10px] flex flex-col justify-center`}>
                 <span className="capitalize cursor-default dotThreeHiddenText2 h-[16px] overflow-hidden text-[#fff] text-[14px] font-[600] leading-[16px]">
-                    {value.title}
+                    {value.name}
                 </span>
                 <div className="text-[12px] text-[hsla(0,0%,100%,0.5)] flex">
                     {value?.artists.map((sing, index) => {
@@ -55,7 +55,7 @@ function Card({value}) {
             </div>
         </div>
         <div className="flex flex-1">
-            <span className='text-[12px] text-[hsla(0,0%,100%,0.5)] dotThreeHiddenText2 h-[16px] overflow-hidden hover:text-[#c273ed] hover:underline cursor-pointer'>{value?.album?.title}</span>
+            <span className='text-[12px] text-[hsla(0,0%,100%,0.5)] dotThreeHiddenText2 h-[16px] overflow-hidden hover:text-[#c273ed] hover:underline cursor-pointer'>{value?.album}</span>
         </div>
         <div className=''>
             <div className="text-[12px] text-[hsla(0,0%,100%,0.5)] group-hover:hidden">

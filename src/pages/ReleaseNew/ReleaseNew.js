@@ -279,6 +279,13 @@ function ReleaseNew() {
         setDatas(dataChartApi.RTChart.items);
     }, []);
 
+    
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
 
     return (
         <div className='px-[50px] text-[#fff]'>

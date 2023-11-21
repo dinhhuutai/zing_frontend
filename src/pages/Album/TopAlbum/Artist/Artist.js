@@ -5,19 +5,8 @@ function Artist({data}) {
 
     const [artists, setArtists] = useState([]);
     useEffect(() => {
-        const array = [];
 
-        for(var i = 0; i < data.length ; i++) {
-            for(var j = 0; j < data[i].artists.length; j++) {
-                
-                array.push(data[i].artists[j]);
-                
-                if(array.length >= 5) {
-                    setArtists(array);
-                    return;
-                }
-            }
-        }
+        setArtists(data);
 
     }, [data]);
 

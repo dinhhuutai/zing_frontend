@@ -945,6 +945,14 @@ function Top100() {
     }, [])
 
 
+    
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
+
     return (
         <div className="px-[50px] text-[#fff] pt-[10px] pb-[30px]">
             <h1 className="fontTextChart uppercase text-[60px] font-[900] text-center">TOP 100</h1>

@@ -21,6 +21,12 @@ let setTimeoutTmp;
 
 
 function SongCreate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [star, setStar] = useState(false);
 
     

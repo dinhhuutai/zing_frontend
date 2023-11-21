@@ -18,6 +18,12 @@ import config from '~/config';
 let setTimeoutTmp;
 
 function GenreUpdate() {
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, []);
     const [notChangeImg, setNoChangeImg] = useState(true);
     const [star, setStar] = useState(false);
     const [data, setData] = useState();
