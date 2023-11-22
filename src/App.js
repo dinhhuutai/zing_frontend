@@ -28,7 +28,9 @@ function App() {
                                 }
                                 element={
                                     route.login ? (
-                                        <ProtecteRouterLogin />
+                                        <DefaultLayout>
+                                            <ProtecteRouterLogin />
+                                        </DefaultLayout>
                                     ) : route.isLogin ? (
                                         <route.component />
                                     ) : (

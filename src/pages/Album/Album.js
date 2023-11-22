@@ -3,14 +3,34 @@ import BottomAlbum from "./BottomAlbum";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import playlistSlice from "~/redux/slices/playlistSlice";
+import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 
+import { useSelector } from "react-redux";
+import { userSelector } from "~/redux/selectors";
+import { useNavigate } from "react-router-dom";
+import config from "~/config";
 
 
 function Album() {
     
     const {id} = useParams();
 
+
     const [data, setData] = useState();
+    const [like, setLike] = useState();
+
+    
+    const tmp = useSelector(userSelector);
+    const [user, setUser] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setUser(tmp)
+    }, [tmp])
+
+    const dispatch = useDispatch();
     
     useEffect(() => {
         getData();
@@ -24,7 +44,11 @@ function Album() {
     
             if(res.data.success) {
                 setData(res.data.items);
-                console.log(res.data.items);
+
+                setLike(res?.data?.items?.playlist.like?.includes(tmp.login.currentUser._id));
+
+                dispatch(playlistSlice.actions.startPlaylist({songs: res?.data?.items?.playlist?.songs, index: 0}));
+                dispatch(btnPlaySlice.actions.playMusic());
             }
 
 
@@ -42,9 +66,34 @@ function Album() {
         });
     }, [id]);
 
+
+
+
+    const navigate = useNavigate();
+
+    const handleLike = async () => {
+        try {
+
+            let res;
+    
+            user.login.currentUser ?
+            res = await axios.put(`${process.env.REACT_APP_API_URL}/v1/page/album/${like ? 'unlike' : 'like'}/${id}`) :
+            navigate(config.routes.login);
+    
+            if(res.data.success) {
+                setLike(res?.data?.playlist.like?.includes(tmp.login.currentUser._id));
+            }
+
+        } catch (error) {
+            
+        }
+    }
+
+
+
     return (
         <div className="px-[50px] text-[#fff] pt-[10px] pb-[30px]">
-            <TopAlbum data={data} />
+            <TopAlbum data={data} handleLike={handleLike} like={like} />
             <BottomAlbum data={data?.playlistFollow} />
         </div>
     );

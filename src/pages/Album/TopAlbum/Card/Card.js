@@ -1,8 +1,30 @@
 import { BsFillPlayFill, BsThreeDots, BsMic, BsMusicNoteBeamed } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
-import { format } from "timeago.js";
+import { useDispatch, useSelector } from "react-redux";
+import playlistSlice from "~/redux/slices/playlistSlice";
+import { playlistSelector } from '~/redux/selectors';
+import { useEffect, useState } from "react";
+import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 
-function Card({value}) {
+function Card({value, index}) {
+
+    const tmp = useSelector(playlistSelector);
+    const [currentSong, setCurrentSong] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setCurrentSong(tmp?.songs[tmp?.currentSong])
+    }, [tmp])
+    
+    const dispatch = useDispatch();
+    const handlePlayMusic = () => {
+        if(value._id !== currentSong._id) {
+            dispatch(playlistSlice.actions.changeSong(index));
+            dispatch(btnPlaySlice.actions.playMusic());
+        }
+    }
+
+
     return (
     <div
         className={`flex px-[10px] items-center hover:bg-[hsla(0,0%,100%,0.2)] first:mt-[0px] mt-[8px] text-[#fff] group py-[10px] border-b-[1px] border-solid border-[hsla(0,0%,100%,0.05)] rounded-[4px]`}
@@ -16,12 +38,12 @@ function Card({value}) {
                     <input className="border-[1px] border-solid border-[#a0a0a0] appearance-none p-[5px] rounded-[2px]" type='checkbox' />
                 </div>
             </div>
-            <div className={`overflow-hidden rounded-[4px] cursor-pointer relative ml-[10px] w-[40px] h-[40px]`}>
+            <button onClick={handlePlayMusic} className={`overflow-hidden rounded-[4px] cursor-pointer relative ml-[10px] w-[40px] h-[40px]`}>
                 <img className="group-hover:brightness-[0.5]" src={value.thumbnail} alt={value.title} />
                 <div className="group-hover:flex absolute h-full w-full hidden justify-center items-center text-[24px] text-[#fff] top-[0px]">
                     <BsFillPlayFill className="hover:opacity-[.8]" />
                 </div>
-            </div>
+            </button>
             <div className={`ml-[10px] flex flex-col justify-center`}>
                 <span className="capitalize cursor-default dotThreeHiddenText2 h-[16px] overflow-hidden text-[#fff] text-[14px] font-[600] leading-[16px]">
                     {value.name}

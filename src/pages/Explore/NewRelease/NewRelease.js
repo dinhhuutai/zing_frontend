@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import {format} from "timeago.js";
 import { BsFillPlayFill, BsThreeDots, BsChevronRight } from "react-icons/bs";
 
-import newRelease1 from '~/assets/imgs/new-release-1.jpg'
-import newRelease2 from '~/assets/imgs/new-release-2.jpg'
-import newRelease3 from '~/assets/imgs/new-release-3.jpg'
 import { Link } from 'react-router-dom';
 import config from '~/config';
+import { useDispatch, useSelector } from 'react-redux';
+import playlistSlice from '~/redux/slices/playlistSlice';
+import { playlistSelector } from '~/redux/selectors';
+import btnPlaySlice from '~/redux/slices/btnPlaySlice';
 
 // const dataNewReleaseAll = [
 //     {
@@ -357,6 +358,23 @@ function NewRelease({data}) {
 
     }, [typeRelease, data]);
 
+    
+    const tmp = useSelector(playlistSelector);
+    const [currentSong, setCurrentSong] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setCurrentSong(tmp?.songs[tmp?.currentSong])
+    }, [tmp])
+
+    const dispatch = useDispatch();
+    const handlePlayMusic = (item, index) => {
+        if(item._id !== currentSong._id) {
+            dispatch(playlistSlice.actions.startPlaylist({songs: datas, index}));
+            dispatch(btnPlaySlice.actions.playMusic());
+        }
+    }
+
 
     return (
         <div className='text-[#fff] mt-[40px]'>
@@ -376,12 +394,12 @@ function NewRelease({data}) {
                 {
                     datas?.map((item, index) => {
                         return <div key={index} className='group flex px-[8px] py-[8px] hover:bg-[hsla(0,0%,100%,0.1)] rounded-[4px] items-center'>
-                            <div className='h-[60px] w-[60px] rounded-[4px] overflow-hidden cursor-pointer relative'>
+                            <button onClick={() => handlePlayMusic(item, index)} className='h-[60px] w-[60px] rounded-[4px] overflow-hidden cursor-pointer relative'>
                                 <img alt={item.name} src={item.thumbnail} className='group-hover:brightness-[0.5]' />
                                 <div className='group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'>
                                     <BsFillPlayFill className='hover:opacity-[.8]' />
                                 </div>
-                            </div>
+                            </button>
                             <div className='ml-[10px] flex flex-col justify-center flex-1'>
                                 <span className='capitalize dotThreeHiddenText h-[16px] overflow-hidden text-[14px] leading-[16px]'>{item.name}</span>
                                 <div className='text-[12px] text-[hsla(0,0%,100%,0.5)] flex dotThreeHiddenText overflow-hidden h-[16px] leading-[16px]'>

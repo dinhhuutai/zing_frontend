@@ -4,424 +4,11 @@ import { useEffect, useState } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Link } from "react-router-dom";
 import config from "~/config";
+import { useDispatch, useSelector } from "react-redux";
+import playlistSlice from "~/redux/slices/playlistSlice";
+import { playlistSelector } from '~/redux/selectors';
+import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 
-// import chart1 from '~/assets/imgs/chart-1.jpg';
-// import chart2 from '~/assets/imgs/chart-2.jpg';
-// import chart3 from '~/assets/imgs/chart-3.jpg';
-
-// const dataChartApi = {
-//     items: {
-//         'Z6FWCOO0': [
-//             {
-//                 time: 1696572000000,
-//                 hour: "13",
-//                 counter: 23110
-//             },
-//             {
-//                 time: 1696575600000,
-//                 hour: "14",
-//                 counter: 21874
-//             },
-//             {
-//                 time: 1696579200000,
-//                 hour: "15",
-//                 counter: 19815
-//             },
-//             {
-//                 time: 1696582800000,
-//                 hour: "16",
-//                 counter: 19866
-//             },
-//             {
-//                 time: 1696586400000,
-//                 hour: "17",
-//                 counter: 20744
-//             },
-//             {
-//                 time: 1696590000000,
-//                 hour: "18",
-//                 counter: 24472
-//             },
-//             {
-//                 time: 1696593600000,
-//                 hour: "19",
-//                 counter: 24853
-//             },
-//             {
-//                 time: 1696597200000,
-//                 hour: "20",
-//                 counter: 22506
-//             },
-//             {
-//                 time: 1696600800000,
-//                 hour: "21",
-//                 counter: 21706
-//             },
-//             {
-//                 time: 1696604400000,
-//                 hour: "22",
-//                 counter: 21139
-//             },
-//             {
-//                 time: 1696608000000,
-//                 hour: "23",
-//                 counter: 20075
-//             },
-//             {
-//                 time: 1696611600000,
-//                 hour: "00",
-//                 counter: 17267
-//             },
-//             {
-//                 time: 1696615200000,
-//                 hour: "01",
-//                 counter: 12892
-//             },
-//             {
-//                 time: 1696618800000,
-//                 hour: "02",
-//                 counter: 9179
-//             },
-//             {
-//                 time: 1696622400000,
-//                 hour: "03",
-//                 counter: 6512
-//             },
-//             {
-//                 time: 1696626000000,
-//                 hour: "04",
-//                 counter: 5633
-//             },
-//             {
-//                 time: 1696629600000,
-//                 hour: "05",
-//                 counter: 5923
-//             },
-//             {
-//                 time: 1696633200000,
-//                 hour: "06",
-//                 counter: 10165
-//             },
-//             {
-//                 time: 1696636800000,
-//                 hour: "07",
-//                 counter: 20731
-//             },
-//             {
-//                 time: 1696640400000,
-//                 hour: "08",
-//                 counter: 26617
-//             },
-//             {
-//                 time: 1696644000000,
-//                 hour: "09",
-//                 counter: 27856
-//             },
-//             {
-//                 time: 1696647600000,
-//                 hour: "10",
-//                 counter: 27820
-//             },
-//             {
-//                 time: 1696651200000,
-//                 hour: "11",
-//                 counter: 25369
-//             },
-//             {
-//                 time: 1696654800000,
-//                 hour: "12",
-//                 counter: 22560
-//             }
-//         ],
-//         'Z6EUB99Z': [
-//             {
-//                 time: 1696572000000,
-//                 hour: "13",
-//                 counter: 14728
-//             },
-//             {
-//                 time: 1696575600000,
-//                 hour: "14",
-//                 counter: 13354
-//             },
-//             {
-//                 time: 1696579200000,
-//                 hour: "15",
-//                 counter: 12400
-//             },
-//             {
-//                 time: 1696582800000,
-//                 hour: "16",
-//                 counter: 12006
-//             },
-//             {
-//                 time: 1696586400000,
-//                 hour: "17",
-//                 counter: 11792
-//             },
-//             {
-//                 time: 1696590000000,
-//                 hour: "18",
-//                 counter: 13380
-//             },
-//             {
-//                 time: 1696593600000,
-//                 hour: "19",
-//                 counter: 12689
-//             },
-//             {
-//                 time: 1696597200000,
-//                 hour: "20",
-//                 counter: 11218
-//             },
-//             {
-//                 time: 1696600800000,
-//                 hour: "21",
-//                 counter: 10396
-//             },
-//             {
-//                 time: 1696604400000,
-//                 hour: "22",
-//                 counter: 10763
-//             },
-//             {
-//                 time: 1696608000000,
-//                 hour: "23",
-//                 counter: 10835
-//             },
-//             {
-//                 time: 1696611600000,
-//                 hour: "00",
-//                 counter: 9588
-//             },
-//             {
-//                 time: 1696615200000,
-//                 hour: "01",
-//                 counter: 8269
-//             },
-//             {
-//                 time: 1696618800000,
-//                 hour: "02",
-//                 counter: 5970
-//             },
-//             {
-//                 time: 1696622400000,
-//                 hour: "03",
-//                 counter: 4820
-//             },
-//             {
-//                 time: 1696626000000,
-//                 hour: "04",
-//                 counter: 3883
-//             },
-//             {
-//                 time: 1696629600000,
-//                 hour: "05",
-//                 counter: 3969
-//             },
-//             {
-//                 time: 1696633200000,
-//                 hour: "06",
-//                 counter: 5955
-//             },
-//             {
-//                 time: 1696636800000,
-//                 hour: "07",
-//                 counter: 10538
-//             },
-//             {
-//                 time: 1696640400000,
-//                 hour: "08",
-//                 counter: 13860
-//             },
-//             {
-//                 time: 1696644000000,
-//                 hour: "09",
-//                 counter: 15013
-//             },
-//             {
-//                 time: 1696647600000,
-//                 hour: "10",
-//                 counter: 15218
-//             },
-//             {
-//                 time: 1696651200000,
-//                 hour: "11",
-//                 counter: 14128
-//             },
-//             {
-//                 time: 1696654800000,
-//                 hour: "12",
-//                 counter: 11669
-//             }
-//         ],
-//         'Z6DCE9OI': [
-//             {
-//                 time: 1696572000000,
-//                 hour: "13",
-//                 counter: 8959
-//             },
-//             {
-//                 time: 1696575600000,
-//                 hour: "14",
-//                 counter: 7969
-//             },
-//             {
-//                 time: 1696579200000,
-//                 hour: "15",
-//                 counter: 6706
-//             },
-//             {
-//                 time: 1696582800000,
-//                 hour: "16",
-//                 counter: 5650
-//             },
-//             {
-//                 time: 1696586400000,
-//                 hour: "17",
-//                 counter: 4984
-//             },
-//             {
-//                 time: 1696590000000,
-//                 hour: "18",
-//                 counter: 4941
-//             },
-//             {
-//                 time: 1696593600000,
-//                 hour: "19",
-//                 counter: 5024
-//             },
-//             {
-//                 time: 1696597200000,
-//                 hour: "20",
-//                 counter: 4766
-//             },
-//             {
-//                 time: 1696600800000,
-//                 hour: "21",
-//                 counter: 5258
-//             },
-//             {
-//                 time: 1696604400000,
-//                 hour: "22",
-//                 counter: 6366
-//             },
-//             {
-//                 time: 1696608000000,
-//                 hour: "23",
-//                 counter: 6887
-//             },
-//             {
-//                 time: 1696611600000,
-//                 hour: "00",
-//                 counter: 6709
-//             },
-//             {
-//                 time: 1696615200000,
-//                 hour: "01",
-//                 counter: 5307
-//             },
-//             {
-//                 time: 1696618800000,
-//                 hour: "02",
-//                 counter: 4052
-//             },
-//             {
-//                 time: 1696622400000,
-//                 hour: "03",
-//                 counter: 3186
-//             },
-//             {
-//                 time: 1696626000000,
-//                 hour: "04",
-//                 counter: 2758
-//             },
-//             {
-//                 time: 1696629600000,
-//                 hour: "05",
-//                 counter: 2631
-//             },
-//             {
-//                 time: 1696633200000,
-//                 hour: "06",
-//                 counter: 3350
-//             },
-//             {
-//                 time: 1696636800000,
-//                 hour: "07",
-//                 counter: 4546
-//             },
-//             {
-//                 time: 1696640400000,
-//                 hour: "08",
-//                 counter: 5366
-//             },
-//             {
-//                 time: 1696644000000,
-//                 hour: "09",
-//                 counter: 6252
-//             },
-//             {
-//                 time: 1696647600000,
-//                 hour: "10",
-//                 counter: 7072
-//             },
-//             {
-//                 time: 1696651200000,
-//                 hour: "11",
-//                 counter: 6507
-//             },
-//             {
-//                 time: 1696654800000,
-//                 hour: "12",
-//                 counter: 6553
-//             }
-//         ],
-//     },
-//     RTChart: {
-//         items: [
-//             {
-//                 encodeId: "Z6FWCOO0",
-//                 name: 'Cắt Đôi Nỗi Sầu',
-//                 img: chart1,
-//                 singer: [
-//                     {
-//                         name: 'Tăng Duy Tân',
-//                     },
-//                     {
-//                         name: 'Drum7',
-//                     }
-//                 ],
-//             },
-//             {
-//                 encodeId: "Z6EUB99Z",
-//                 name: 'Tất Cả Hoặc Không Là Gì Cả',
-//                 img: chart2,
-//                 singer: [
-//                     {
-//                         name: 'Cao Thái Sơn',
-//                     },
-//                     {
-//                         name: 'Đông Thiên Đức',
-//                     }
-//                 ],
-//             },
-//             {
-//                 encodeId: "Z6DCE9OI",
-//                 name: 'Sao Trời Làm Gió',
-//                 img: chart3,
-//                 singer: [
-//                     {
-//                         name: 'Nal',
-//                     },
-//                     {
-//                         name: 'CT',
-//                     }
-//                 ],
-//             },
-//         ]    
-//     },
-// }
 
 function CustomTooltip({data, percent, index}) {
 
@@ -489,11 +76,12 @@ function Chart({data}) {
 
 
         setPercent({
-            [datas?.RTChart.items[0].encodeId]: Math.round((temp1/total) * 100),
-            [datas?.RTChart.items[1].encodeId]: Math.round((temp2/total) * 100),
-            [datas?.RTChart.items[2].encodeId]: Math.round((temp3/total) * 100),
+            [datas?.RTChart.items[0].encodeId]: Math.round((temp1/total) * 100) || 0,
+            [datas?.RTChart.items[1].encodeId]: Math.round((temp2/total) * 100) || 0,
+            [datas?.RTChart.items[2].encodeId]: Math.round((temp3/total) * 100) || 0,
         })
     }
+
 
     const handleChart = () => {
         let tempArray = []
@@ -554,6 +142,23 @@ function Chart({data}) {
     }, [indexChartHover]);
 
 
+    const tmp = useSelector(playlistSelector);
+    const [currentSong, setCurrentSong] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setCurrentSong(tmp?.songs[tmp?.currentSong])
+    }, [tmp])
+
+    const dispatch = useDispatch();
+    const handlePlayMusic = (item, index) => {
+        if(item._id !== currentSong._id) {
+            dispatch(playlistSlice.actions.startPlaylist({songs: datas?.RTChart?.items, index}));
+            dispatch(btnPlaySlice.actions.playMusic());
+        }
+    }
+
+
     return (
         <div className="bg-[rgba(51,16,76,.95)] p-[20px] rounded-[4px] mt-[40px]">
             <div className="flex text-[28px] font-[700] items-center">
@@ -571,12 +176,12 @@ function Chart({data}) {
                                     <div className={index === 0 ? 'min-w-[18px] fontTextChartOne text-[30px] cursor-default' : index === 1 ? 'min-w-[18px] fontTextChartTwo text-[30px] cursor-default' : index === 2 ? 'min-w-[18px] fontTextChartThree text-[30px] cursor-default' : 'min-w-[18px] fontTextChartOther text-[30px] cursor-default'}>
                                         <span>{index + 1}</span>
                                     </div>
-                                    <div className="w-[60px] h-[60px] overflow-hidden rounded-[4px] cursor-pointer relative ml-[14px]">
+                                    <button onClick={() => handlePlayMusic(item, index)} className="w-[60px] h-[60px] overflow-hidden rounded-[4px] cursor-pointer relative ml-[14px]">
                                         <img className='group-hover:brightness-[0.5]' src={item.thumbnail} alt={item.name} />
                                         <div className='group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'>
                                             <BsFillPlayFill className='hover:opacity-[.8]' />
                                         </div>
-                                    </div>
+                                    </button>
                                     <div className='ml-[10px] flex flex-col justify-center flex-1'>
                                         <span className='capitalize dotThreeHiddenText2 h-[16px] overflow-hidden text-[#fff] text-[14px] font-[600] leading-[16px]'>{item.name}</span>
                                         <div className='text-[12px] text-[hsla(0,0%,100%,0.5)] flex'>

@@ -2,115 +2,12 @@ import { useEffect, useState } from "react";
 import { BsChevronRight, BsPlayCircle, BsChevronLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import rank1 from '~/assets/imgs/rank-1.jpg';
 import config from "~/config";
+import playlistSlice from "~/redux/slices/playlistSlice";
 
-// const dataRank = [
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-//     {
-//         name: 'Phấn hoa màu son',
-//         img: rank1,
-//         release: '01.10.2023',
-//         singer: [
-//             {
-//                 name: 'H-Kray',
-//             },
-//             {
-//                 name: 'Thoại Mỹ',
-//             }
-//         ],
-//     },
-// ]
+import { useDispatch, useSelector } from 'react-redux';
+import { playlistSelector } from '~/redux/selectors';
+import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 
 function Rank({data}) {
 
@@ -151,6 +48,22 @@ function Rank({data}) {
         }
     }
 
+    
+    const tmp = useSelector(playlistSelector);
+    const [currentSong, setCurrentSong] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setCurrentSong(tmp?.songs[tmp?.currentSong])
+    }, [tmp])
+
+    const dispatch = useDispatch();
+    const handlePlayMusic = (item, index) => {
+        if(item._id !== currentSong._id) {
+            dispatch(playlistSlice.actions.startPlaylist({songs: datas?.items, index}));
+            dispatch(btnPlaySlice.actions.playMusic());
+        }
+    }
 
     return (
         <div className="text-[#fff] mt-[40px]">
@@ -173,12 +86,12 @@ function Rank({data}) {
                         {
                             datas?.items?.map((item, index) => {
                                 return <div key={index} className="group w-[33.33%] shrink-0 cursor-pointer flex bg-[hsla(0,0%,100%,0.1)] py-[10px] px-[10px] rounded-[4px]">
-                                    <div className="w-[100px] h-[100px] overflow-hidden rounded-[4px] relative group/item">
+                                    <button onClick={() => handlePlayMusic(item, index)} className="w-[100px] h-[100px] overflow-hidden rounded-[4px] relative group/item">
                                         <img src={item.thumbnail} alt={item.name} className="group-hover/item:scale-[1.1] group-hover:brightness-50 transition-all ease-linear duration-[.4s]" />
                                         <div className='group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'>
                                             <BsPlayCircle className='hover:opacity-[.8]' />
                                         </div>
-                                    </div>
+                                    </button>
                                     <div className='flex flex-col justify-between ml-[10px] flex-1'>
                                         <div>
                                             <span className="capitalize">{item.name}</span>
