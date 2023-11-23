@@ -1,10 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { playlistSelector } from '~/redux/selectors';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import playlistSlice from '~/redux/slices/playlistSlice';
 import axios from 'axios';
+import { AudioContext } from '~/contexts/AudioContext';
 
-function ControlSongBottom({ refAudio }) {
+function ControlSongBottom() {
+
+    
+    const { refAudio } = useContext(AudioContext);
+
     const tmp = useSelector(playlistSelector);
     const [data, setData] = useState(tmp);
 
@@ -27,7 +32,8 @@ function ControlSongBottom({ refAudio }) {
                     setDurationCurrent(refAudio.current?.currentTime)
                     setProcess(progressPercent)
         
-                    processLineRef.current.style.width = progressPercent + '%'; //2
+                    processLineRef.current && (processLineRef.current.style.width = progressPercent + '%'); //2
+                    // processLineRef.current.style.width = progressPercent + '%'
                 }
             };
     
@@ -132,7 +138,6 @@ function ControlSongBottom({ refAudio }) {
                     ? '0' + Math.floor(data.duration / 60)
                     : Math.floor(data.duration / 60)
             }:${data.duration % 60 < 10 ? '0' + (data.duration % 60) : data.duration % 60}`}</span>
-            <audio ref={refAudio} src={data.linkMusic} autoPlay className="" preload="metadata"></audio>
         </div>
     );
 }

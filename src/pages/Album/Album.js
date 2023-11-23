@@ -1,7 +1,7 @@
 import TopAlbum from "./TopAlbum";
 import BottomAlbum from "./BottomAlbum";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import playlistSlice from "~/redux/slices/playlistSlice";
@@ -11,10 +11,12 @@ import { useSelector } from "react-redux";
 import { userSelector } from "~/redux/selectors";
 import { useNavigate } from "react-router-dom";
 import config from "~/config";
+import { AudioContext } from "~/contexts/AudioContext";
 
 
 function Album() {
     
+
     const {id} = useParams();
 
 
@@ -41,19 +43,20 @@ function Album() {
 
         try {
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/v1/page/album/getSingle/${id}`);
+
     
             if(res.data.success) {
                 setData(res.data.items);
 
-                setLike(res?.data?.items?.playlist.like?.includes(tmp.login.currentUser._id));
-
+                
                 dispatch(playlistSlice.actions.startPlaylist({songs: res?.data?.items?.playlist?.songs, index: 0}));
                 dispatch(btnPlaySlice.actions.playMusic());
+                setLike(res?.data?.items?.playlist.like?.includes(tmp?.login?.currentUser?._id));
             }
 
 
         } catch (error) {
-
+            console.log(error);
         }
 
     }

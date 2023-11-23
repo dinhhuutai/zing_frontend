@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {format} from "timeago.js";
 import { BsFillPlayFill, BsThreeDots, BsChevronRight } from "react-icons/bs";
 
@@ -6,343 +6,16 @@ import { Link } from 'react-router-dom';
 import config from '~/config';
 import { useDispatch, useSelector } from 'react-redux';
 import playlistSlice from '~/redux/slices/playlistSlice';
-import { playlistSelector } from '~/redux/selectors';
+import { btnPlaySelector, playlistSelector } from '~/redux/selectors';
 import btnPlaySlice from '~/redux/slices/btnPlaySlice';
 
-// const dataNewReleaseAll = [
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-//     {
-//         name: 'Vàng phai trước ngõ',
-//         img: newRelease1,
-//         singer: [
-//             {
-//                 name: "Lân Nhã",
-//             }
-//         ],
-//         createDate: new Date('2023-08-28'),
-//     },
-// ]
+import iconPlay from '~/assets/imgs/icon-playing.gif';
+import { AudioContext } from '~/contexts/AudioContext';
 
-// const dataNewReleaseVN = [
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-//     {
-//         name: 'Có chắc yêu là đây (Remix)',
-//         img: newRelease2,
-//         singer: [
-//             {
-//                 name: 'Sơn Tùng M-TP',
-//             },
-//             {
-//                 name: "BOMATELA",
-//             }
-//         ],
-//         createDate: new Date('2023-10-01'),
-//     },
-// ]
-
-// const dataNewReleaseQT = [
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-//     {
-//         name: '3D (feat. Jack Harlow)',
-//         img: newRelease3,
-//         singer: [
-//             {
-//                 name: 'Jung Kook',
-//             },
-//             {
-//                 name: 'Jack Harlow',
-//             }
-//         ],
-//         createDate: new Date('2023-09-26'),
-//     },
-// ]
 
 function NewRelease({data}) {
+    const { refAudio } = useContext(AudioContext);
+
     const [datas, setDatas] = useState([]);
     const [typeRelease, setTypeRelease] = useState('all');
 
@@ -360,18 +33,30 @@ function NewRelease({data}) {
 
     
     const tmp = useSelector(playlistSelector);
+    const btnPlayTmp = useSelector(btnPlaySelector);
+    const [btnPlay, setBtnPlay] = useState(false);
     const [currentSong, setCurrentSong] = useState(tmp);
     
     
     useEffect(() => {
-        setCurrentSong(tmp?.songs[tmp?.currentSong])
-    }, [tmp])
+        setCurrentSong(tmp?.songs[tmp?.currentSong]);
+        setBtnPlay(btnPlayTmp);
+    }, [tmp, btnPlayTmp, data])
+    
 
     const dispatch = useDispatch();
     const handlePlayMusic = (item, index) => {
         if(item._id !== currentSong._id) {
             dispatch(playlistSlice.actions.startPlaylist({songs: datas, index}));
             dispatch(btnPlaySlice.actions.playMusic());
+        } else {
+            if(btnPlayTmp.isPlay){
+                dispatch(btnPlaySlice.actions.pauseMusic());
+                refAudio?.current?.pause()
+            } else {
+                dispatch(btnPlaySlice.actions.playMusic());
+                refAudio?.current?.play()
+            }
         }
     }
 
@@ -393,11 +78,15 @@ function NewRelease({data}) {
             <div className='grid grid-cols-3 gap-[10px] mt-[20px]'>
                 {
                     datas?.map((item, index) => {
-                        return <div key={index} className='group flex px-[8px] py-[8px] hover:bg-[hsla(0,0%,100%,0.1)] rounded-[4px] items-center'>
+                        return <div key={index} className={`${currentSong._id === item._id && 'bg-[hsla(0,0%,100%,0.1)]'} group flex px-[8px] py-[8px] hover:bg-[hsla(0,0%,100%,0.1)] rounded-[4px] items-center`}>
                             <button onClick={() => handlePlayMusic(item, index)} className='h-[60px] w-[60px] rounded-[4px] overflow-hidden cursor-pointer relative'>
-                                <img alt={item.name} src={item.thumbnail} className='group-hover:brightness-[0.5]' />
-                                <div className='group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'>
-                                    <BsFillPlayFill className='hover:opacity-[.8]' />
+                                <img alt={item.name} src={item.thumbnail} className={`${currentSong._id === item._id && 'brightness-[0.5]'} group-hover:brightness-[0.5]`} />
+                                <div className={`${currentSong._id === item._id ? 'flex group-hover:flex absolute h-full w-full justify-center items-center text-[36px] text-[#fff] top-[0px]' : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'}`}>
+                                    {
+                                        currentSong._id === item._id && btnPlay.isPlay ?
+                                        <img className='h-[20px]' src={iconPlay} alt='play' /> :
+                                        <BsFillPlayFill className='hover:opacity-[.8]' />
+                                    }
                                 </div>
                             </button>
                             <div className='ml-[10px] flex flex-col justify-center flex-1'>

@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsPauseCircle, BsShuffle, BsFillSkipStartFill, BsFillSkipEndFill, BsPlayCircle,BsArrowLeftRight } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { AudioContext } from "~/contexts/AudioContext";
 import { btnPlaySelector, playlistSelector } from "~/redux/selectors";
 import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 import playlistSlice from "~/redux/slices/playlistSlice";
 
-function ControlSongTop({refAudio}) {
+function ControlSongTop() {
+
+    const { refAudio } = useContext(AudioContext);
     
     const tmp = useSelector(playlistSelector);
     const btnPlayTmp = useSelector(btnPlaySelector);
@@ -21,6 +24,7 @@ function ControlSongTop({refAudio}) {
     }, [tmp, btnPlayTmp])
         
     const dispatch = useDispatch();
+
 
     const handlePlay = () => {
 

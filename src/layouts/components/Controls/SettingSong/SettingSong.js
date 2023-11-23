@@ -1,8 +1,18 @@
-import { useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { BsBadgeTm, BsMic, BsAspectRatio, BsVolumeUp, BsMusicNoteList, BsVolumeMute, BsVolumeDown, BsVolumeOff } from 'react-icons/bs';
+import { AudioContext } from '~/contexts/AudioContext';
 
-function SettingSong({process, setProcess}) {
+function SettingSong() {
     
+
+    const [process, setProcess] = useState(50);
+    const { refAudio } = useContext(AudioContext);
+
+    useEffect(() => {
+        refAudio.current.volume = process / 100;
+        
+    }, [process])
+
     const processLineRef = useRef();
 
     const handleOnInput = (e) => {
