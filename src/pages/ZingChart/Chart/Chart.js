@@ -46,7 +46,7 @@ function Chart({ data }) {
 
     useEffect(() => {
         setDatas(data);
-    }, []);
+    }, [data]);
 
     useEffect(() => {
         handlePercent();

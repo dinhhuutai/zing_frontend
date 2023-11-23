@@ -58,6 +58,7 @@ function ControlSongTop() {
             
             dispatch(playlistSlice.actions.changeSong(newIndex));
     
+            dispatch(btnPlaySlice.actions.playMusic());
             
             refAudio?.current?.play()
     
@@ -66,6 +67,7 @@ function ControlSongTop() {
                 dispatch(playlistSlice.actions.resetIndexSongRandom());
             }
         } else {
+            dispatch(btnPlaySlice.actions.playMusic());
             dispatch(playlistSlice.actions.nextMusic());
             refAudio?.current?.play()
         }
@@ -86,6 +88,7 @@ function ControlSongTop() {
             
             dispatch(playlistSlice.actions.changeSong(newIndex));
     
+            dispatch(btnPlaySlice.actions.playMusic());
             
             refAudio?.current?.play()
     
@@ -95,6 +98,7 @@ function ControlSongTop() {
             }
 
         } else {
+            dispatch(btnPlaySlice.actions.playMusic());
             dispatch(playlistSlice.actions.prevMusic());
             refAudio?.current?.play()
         }

@@ -11,10 +11,12 @@ function ControlSongBottom() {
     const { refAudio } = useContext(AudioContext);
 
     const tmp = useSelector(playlistSelector);
+    const [control, setControl] = useState(tmp);
     const [data, setData] = useState(tmp);
 
     useEffect(() => {
         setData(tmp.songs[tmp.currentSong]);
+        setControl(tmp);
     }, [tmp]);
 
     const processLineRef = useRef();
@@ -39,31 +41,35 @@ function ControlSongBottom() {
     
             
             refAudio.current.onended = (e) => {
-                if(data.isRepeat){
-                    refAudio?.current?.play();
-                } else if(data.isRandom) {
-                    let newIndex;
-                    do{
-                        newIndex = Math.floor(Math.random() * data?.songs?.length);
-                    } while(newIndex === data.currentSong || data.indexSongRandom.includes(newIndex));
+
+                try {
+
+                    if(control.isRepeat){
+                        refAudio?.current?.play();
+                    } else if(control.isRandom) {
+                        let newIndex;
+                        do{
+                            newIndex = Math.floor(Math.random() * control?.songs?.length);
+                        } while(newIndex === control.currentSong || control.indexSongRandom.includes(newIndex));
+                
+                        const indexSongRandomNew = [...control.indexSongRandom, newIndex];
             
-                    const indexSongRandomNew = [...data.indexSongRandom, newIndex];
-        
-                    dispatch(playlistSlice.actions.pushIndexSongRandom(indexSongRandomNew));
-        
-                    
-                    dispatch(playlistSlice.actions.changeSong(newIndex));
+                        dispatch(playlistSlice.actions.pushIndexSongRandom(indexSongRandomNew));
             
-                    
-                    refAudio?.current?.play()
-            
-            
-                    if(data?.songs?.length === indexSongRandomNew.length){
-                        dispatch(playlistSlice.actions.resetIndexSongRandom());
+                        
+                        dispatch(playlistSlice.actions.changeSong(newIndex));
+                
+                
+                
+                        if(data?.songs?.length === indexSongRandomNew.length){
+                            dispatch(playlistSlice.actions.resetIndexSongRandom());
+                        }
+                    } else {
+                        dispatch(playlistSlice.actions.nextMusic());
                     }
-                } else {
-                    dispatch(playlistSlice.actions.nextMusic());
-                    refAudio?.current?.play()
+                    
+                } catch (error) {
+                    
                 }
             }
         }
@@ -88,7 +94,7 @@ function ControlSongBottom() {
     useEffect(() => {
         handleListenSong();
 
-    }, [data.linkMusic]);
+    }, [data?.linkMusic]);
 
 
     const handleListenSong = async () => {
@@ -96,7 +102,7 @@ function ControlSongBottom() {
             const currentDate = new Date(); // Ngày hiện tại
             const currentDateTime = currentDate.getTime() / 1000;
 
-            const res = await axios.put(`http://localhost:5000/api/v1/song/listen/${data._id}?ctime=${currentDateTime}`);
+            const res = await axios.put(`http://localhost:5000/api/v1/song/listen/${data?._id}?ctime=${currentDateTime}`);
             
 
         } catch (error) {
@@ -134,10 +140,10 @@ function ControlSongBottom() {
                 ></div>
             </div>
             <span className="min-w-[44px] text-[12px] font-bold text-right">{`${
-                Math.floor(data.duration / 60) < 10
-                    ? '0' + Math.floor(data.duration / 60)
-                    : Math.floor(data.duration / 60)
-            }:${data.duration % 60 < 10 ? '0' + (data.duration % 60) : data.duration % 60}`}</span>
+                Math.floor(data?.duration / 60) < 10
+                    ? '0' + Math.floor(data?.duration / 60)
+                    : Math.floor(data?.duration / 60)
+            }:${data?.duration % 60 < 10 ? '0' + (data?.duration % 60) : data?.duration % 60}`}</span>
         </div>
     );
 }

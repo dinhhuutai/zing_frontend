@@ -63,7 +63,7 @@ function Rank({ data }) {
 
     const dispatch = useDispatch();
     const handlePlayMusic = (item, index) => {
-        if (item._id !== currentSong._id) {
+        if (item._id !== currentSong?._id) {
             dispatch(playlistSlice.actions.startPlaylist({ songs: datas?.items, index }));
             dispatch(btnPlaySlice.actions.playMusic());
         } else {
@@ -117,7 +117,7 @@ function Rank({ data }) {
                                 <div
                                     key={index}
                                     className={`${
-                                        currentSong._id === item._id && 'bg-[hsla(0,0%,100%,0.1)]'
+                                        currentSong?._id === item._id && 'bg-[hsla(0,0%,100%,0.1)]'
                                     } group w-[33.33%] shrink-0 cursor-pointer flex bg-[hsla(0,0%,100%,0.1)] py-[10px] px-[10px] rounded-[4px]`}
                                 >
                                     <button
@@ -128,17 +128,17 @@ function Rank({ data }) {
                                             src={item.thumbnail}
                                             alt={item.name}
                                             className={`${
-                                                currentSong._id === item._id && 'brightness-50'
+                                                currentSong?._id === item._id && 'brightness-50'
                                             } group-hover/item:scale-[1.1] group-hover:cc transition-all ease-linear duration-[.4s]`}
                                         />
                                         <div
                                             className={`${
-                                                currentSong._id === item._id
+                                                currentSong?._id === item._id
                                                     ? 'group-hover:flex absolute h-full w-full flex justify-center items-center text-[36px] text-[#fff] top-[0px]'
                                                     : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'
                                             }`}
                                         >
-                                            {currentSong._id === item._id && btnPlay.isPlay ? (
+                                            {currentSong?._id === item._id && btnPlay.isPlay ? (
                                                 <img className="h-[20px]" src={iconPlay} alt="play" />
                                             ) : (
                                                 <BsPlayCircle className="hover:opacity-[.8]" />

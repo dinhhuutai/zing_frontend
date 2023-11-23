@@ -207,7 +207,7 @@ function Chart({ data }) {
                                         index + 1 === indexChartHover
                                             ? 'bg-[hsla(0,0%,100%,.2)]'
                                             : 'bg-[hsla(0,0%,100%,.07)]'
-                                    } ${currentSong._id === item._id && 'bg-[hsla(0,0%,100%,0.2)]'} flex items-center hover:bg-[hsla(0,0%,100%,0.2)] first:mt-[0px] mt-[8px] text-[#fff] group py-[14px] px-[12px] rounded-[4px]`}
+                                    } ${currentSong?._id === item._id && 'bg-[hsla(0,0%,100%,0.2)]'} flex items-center hover:bg-[hsla(0,0%,100%,0.2)] first:mt-[0px] mt-[8px] text-[#fff] group py-[14px] px-[12px] rounded-[4px]`}
                                     key={index}
                                 >
                                     <div
@@ -228,12 +228,12 @@ function Chart({ data }) {
                                         className="w-[60px] h-[60px] overflow-hidden rounded-[4px] cursor-pointer relative ml-[14px]"
                                     >
                                         <img
-                                            className={`${currentSong._id === item._id && 'brightness-[0.5]'} group-hover:brightness-[0.5]`}
+                                            className={`${currentSong?._id === item._id && 'brightness-[0.5]'} group-hover:brightness-[0.5]`}
                                             src={item.thumbnail}
                                             alt={item.name}
                                         />
-                                        <div className={`${currentSong._id === item._id ? 'group-hover:flex absolute h-full w-full flex justify-center items-center text-[36px] text-[#fff] top-[0px]' : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'}`}>
-                                            {currentSong._id === item._id && btnPlay.isPlay ? (
+                                        <div className={`${currentSong?._id === item._id ? 'group-hover:flex absolute h-full w-full flex justify-center items-center text-[36px] text-[#fff] top-[0px]' : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'}`}>
+                                            {currentSong?._id === item._id && btnPlay.isPlay ? (
                                                 <img className="h-[20px]" src={iconPlay} alt="play" />
                                             ) : (
                                                 <BsFillPlayFill className="hover:opacity-[.8]" />

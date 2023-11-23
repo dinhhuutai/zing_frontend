@@ -20,7 +20,8 @@ function ZingChart() {
         try {
             const currentDate = new Date(); // Ngày hiện tại
             const currentDateTime = currentDate.getTime() / 1000;
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/v1/page/explore/get?ctime=${currentDateTime}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/v1/page/zingchart/get?ctime=${currentDateTime}`);
+
     
             if(res.data.success) {
                 setData(res.data.items);
@@ -28,7 +29,7 @@ function ZingChart() {
 
 
         } catch (error) {
-
+            console.log(error);
         }
 
     }

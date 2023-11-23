@@ -29,7 +29,7 @@ const AudioContextProvider = ({ children }) => {
     return (
         <AudioContext.Provider value={audioContextData}>
             {children}
-            <audio ref={refAudio} src={data.linkMusic} autoPlay className="" preload="metadata"></audio>
+            <audio ref={refAudio} src={data?.linkMusic} autoPlay className="" preload="metadata"></audio>
         </AudioContext.Provider>
     );
 };

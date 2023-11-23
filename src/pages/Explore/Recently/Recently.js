@@ -49,7 +49,7 @@ function Recently({data}) {
             <div className='grid grid-cols-7 gap-[16px] mt-[16px]'>
                 {
                     datas.map((recently, index) => {
-                        return <Link to={`${config.routes.album}/${recently._id}`} key={index} className=''>
+                        return index < 7 && <Link to={`${config.routes.album}/${recently._id}`} key={index} className=''>
                             <div className='rounded-[6px] overflow-hidden cursor-pointer group relative'>
                                 <div className='absolute w-full h-full z-[1] hidden group-hover:flex justify-around items-center px-[6px]'>
                                     <div className="text-[14px] h-[26px] w-[26px] hover:bg-[hsla(0,0%,100%,.3)] flex justify-center items-center rounded-[50%]">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsArrowBarLeft, BsEyeSlash, BsEye } from "react-icons/bs";
 import config from "~/config";
@@ -7,8 +7,11 @@ import axios from "axios";
 import bgLogin from '~/assets/imgs/bg-login.jpg';
 import { useDispatch } from "react-redux";
 import authSlice from "~/redux/slices/authSlice";
+import { AudioContext } from "~/contexts/AudioContext";
 
 function Login() {
+    const { refAudio } = useContext(AudioContext);
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [unvisiblePassword, setUnvisiblePassword] = useState(true);
@@ -47,6 +50,8 @@ function Login() {
                 const res = await axios.post(`${process.env.REACT_APP_API_URL}/v1/user/login`, user);
 
                 if(res?.data?.success){
+                    refAudio.current.pause();
+                    
                     dispatch(authSlice.actions.loginSuccess({
                         user: res.data?.user,
                         accessToken: res.data?.accessToken,

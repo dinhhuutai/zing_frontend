@@ -63,11 +63,22 @@ function Album() {
 
     
     useEffect(() => {
+
+        handleHistoryPlaylist();
+
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
         });
     }, [id]);
+
+    const handleHistoryPlaylist = async () => {
+        try {
+            await axios.put(`${process.env.REACT_APP_API_URL}/v1/page/album/historyPlaylist/${id}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
 

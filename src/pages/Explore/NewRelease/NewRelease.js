@@ -78,12 +78,12 @@ function NewRelease({data}) {
             <div className='grid grid-cols-3 gap-[10px] mt-[20px]'>
                 {
                     datas?.map((item, index) => {
-                        return <div key={index} className={`${currentSong._id === item._id && 'bg-[hsla(0,0%,100%,0.1)]'} group flex px-[8px] py-[8px] hover:bg-[hsla(0,0%,100%,0.1)] rounded-[4px] items-center`}>
+                        return <div key={index} className={`${currentSong?._id === item._id && 'bg-[hsla(0,0%,100%,0.1)]'} group flex px-[8px] py-[8px] hover:bg-[hsla(0,0%,100%,0.1)] rounded-[4px] items-center`}>
                             <button onClick={() => handlePlayMusic(item, index)} className='h-[60px] w-[60px] rounded-[4px] overflow-hidden cursor-pointer relative'>
-                                <img alt={item.name} src={item.thumbnail} className={`${currentSong._id === item._id && 'brightness-[0.5]'} group-hover:brightness-[0.5]`} />
-                                <div className={`${currentSong._id === item._id ? 'flex group-hover:flex absolute h-full w-full justify-center items-center text-[36px] text-[#fff] top-[0px]' : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'}`}>
+                                <img alt={item.name} src={item.thumbnail} className={`${currentSong?._id === item._id && 'brightness-[0.5]'} group-hover:brightness-[0.5]`} />
+                                <div className={`${currentSong?._id === item._id ? 'flex group-hover:flex absolute h-full w-full justify-center items-center text-[36px] text-[#fff] top-[0px]' : 'group-hover:flex absolute h-full w-full hidden justify-center items-center text-[36px] text-[#fff] top-[0px]'}`}>
                                     {
-                                        currentSong._id === item._id && btnPlay.isPlay ?
+                                        currentSong?._id === item._id && btnPlay.isPlay ?
                                         <img className='h-[20px]' src={iconPlay} alt='play' /> :
                                         <BsFillPlayFill className='hover:opacity-[.8]' />
                                     }
