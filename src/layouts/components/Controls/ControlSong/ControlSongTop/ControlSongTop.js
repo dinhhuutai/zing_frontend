@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { BsPauseCircle, BsShuffle, BsFillSkipStartFill, BsFillSkipEndFill, BsPlayCircle,BsArrowLeftRight } from "react-icons/bs";
+import { BsPauseCircle, BsShuffle, BsFillSkipStartFill, BsFillSkipEndFill, BsPlayCircle,BsArrowLeftRight, BsPauseFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { AudioContext } from "~/contexts/AudioContext";
 import { btnPlaySelector, playlistSelector } from "~/redux/selectors";

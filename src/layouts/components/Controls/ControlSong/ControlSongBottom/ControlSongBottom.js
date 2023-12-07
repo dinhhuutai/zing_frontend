@@ -102,8 +102,9 @@ function ControlSongBottom() {
             const currentDate = new Date(); // Ngày hiện tại
             const currentDateTime = currentDate.getTime() / 1000;
 
-            const res = await axios.put(`http://localhost:5000/api/v1/song/listen/${data?._id}?ctime=${currentDateTime}`);
-            
+            if(data.id) {
+                const res = await axios.put(`http://localhost:5000/api/v1/song/listen/${data?._id}?ctime=${currentDateTime}`);
+            }
 
         } catch (error) {
             console.log(error);

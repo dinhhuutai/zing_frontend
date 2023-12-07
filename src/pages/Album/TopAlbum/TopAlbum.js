@@ -1,18 +1,33 @@
-import { useEffect, useState } from "react";
-import { BsPlayCircle, BsPlayFill, BsThreeDots, BsHeart, BsFillCircleFill, BsHeartFill } from "react-icons/bs";
+import { useContext, useEffect, useState } from "react";
+import { BsPlayCircle, BsPlayFill, BsThreeDots, BsHeart, BsFillCircleFill, BsHeartFill, BsPauseFill } from "react-icons/bs";
 import Card from "./Card";
 import Artist from "./Artist";
+import { useDispatch, useSelector } from "react-redux";
+import { btnPlaySelector } from "~/redux/selectors";
+import { AudioContext } from "~/contexts/AudioContext";
+import btnPlaySlice from "~/redux/slices/btnPlaySlice";
 
 
 
 function TopAlbum({data, handleLike, like}) {
+    
+    const { refAudio } = useContext(AudioContext);
+
 
     const [datas, setDatas] = useState();
     const [totalDuration, setTotalDuration] = useState(0);
 
+    
+    const btnPlayTmp = useSelector(btnPlaySelector);
+
+    const [btnPlay, setBtnPlay] = useState(btnPlayTmp);
+
+
     useEffect(() => {
         setDatas(data);
 
+        
+        setBtnPlay(btnPlayTmp);
 
         const totalTime =  datas?.playlist?.songs?.reduce((gtlt, value) => {
             return gtlt + value.duration;
@@ -20,9 +35,29 @@ function TopAlbum({data, handleLike, like}) {
 
         setTotalDuration(totalTime);
 
-    }, [data]);
+    }, [data, btnPlayTmp]);
+
+    
+    const dispatch = useDispatch();
 
 
+    const handlePlay = () => {
+
+        try {
+            if(btnPlayTmp.isPlay){
+                dispatch(btnPlaySlice.actions.pauseMusic());
+                refAudio?.current?.pause()
+            } else {
+                dispatch(btnPlaySlice.actions.playMusic());
+                refAudio?.current?.play()
+            }
+            
+        } catch (error) {
+            
+        }
+
+
+    }
 
 
     return (
@@ -72,10 +107,17 @@ function TopAlbum({data, handleLike, like}) {
                             <span className="text-[hsla(0,0%,100%,0.5)] text-[12px]">{Math.floor(datas?.playlist?.like?.length / 1000)}K người yêu thích</span>
                         </div>
                         <div className="mt-[10px] flex justify-center">
-                            <button className="hover:brightness-[0.9] flex justify-center items-center px-[16px] py-[5px] rounded-[20px] outline-none bg-[#9b4de0]">
-                                <BsPlayFill className="text-[20px]" />
-                                <span className="text-[13px] ml-[4px]">PHÁT NGẪU NHIÊN</span>
-                            </button>
+                            {
+                                btnPlay.isPlay ?
+                                <button onClick={handlePlay} className="hover:brightness-[0.9] flex justify-center items-center px-[16px] py-[5px] rounded-[20px] outline-none bg-[#9b4de0]">
+                                    <BsPauseFill className="text-[20px]" />
+                                    <span className="text-[13px] ml-[4px]">TẠM DỪNG</span>
+                                </button> :
+                                <button onClick={handlePlay} className="hover:brightness-[0.9] flex justify-center items-center px-[16px] py-[5px] rounded-[20px] outline-none bg-[#9b4de0]">
+                                    <BsPlayFill className="text-[20px]" />
+                                    <span className="text-[13px] ml-[4px]">TIẾP TỤC PHÁT</span>
+                                </button>
+                            }
                         </div>
                         <div className="flex justify-center mt-[10px] gap-[18px]">
                             <div onClick={handleLike} className={`${like ? 'text-[#e23b3b]' : 'text-[#fff]'} text-[12px] h-[28px] w-[28px] bg-[hsla(0,0%,100%,.09)] hover:bg-[hsla(0,0%,100%,.07)] cursor-pointer flex justify-center items-center rounded-[50%]`}>

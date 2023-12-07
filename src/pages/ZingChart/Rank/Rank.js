@@ -1,292 +1,62 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardRank from "~/components/CardRank";
+import { AudioContext } from '~/contexts/AudioContext';
+import { btnPlaySelector, playlistSelector } from '~/redux/selectors';
+import btnPlaySlice from '~/redux/slices/btnPlaySlice';
+import playlistSlice from '~/redux/slices/playlistSlice';
 
 
-import chart1 from '~/assets/imgs/chart-1.jpg';
-import chart2 from '~/assets/imgs/chart-2.jpg';
-import chart3 from '~/assets/imgs/chart-3.jpg';
 
-const dataChartApi = {
-    RTChart: {
-        items: [
-            {
-                encodeId: 'Z6FWCOO0',
-                name: 'Cắt Đôi Nỗi Sầu',
-                img: chart1,
-                album: 'Cắt Đôi Nỗi Sầu (Single)',
-                singer: [
-                    {
-                        name: 'Tăng Duy Tân',
-                    },
-                    {
-                        name: 'Drum7',
-                    },
-                ],
-                duration: '04:07',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6EUB99Z',
-                name: 'Tất Cả Hoặc Không Là Gì Cả',
-                img: chart2,
-                album: 'Tất Cả Hoặc Không Là Gì Cả (Single)',
-                singer: [
-                    {
-                        name: 'Cao Thái Sơn',
-                    },
-                    {
-                        name: 'Đông Thiên Đức',
-                    },
-                ],
-                duration: '03:02',
-                rakingStatus: 2,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: -1,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: -5,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 12,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: -2,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-            {
-                encodeId: 'Z6DCE9OI',
-                name: 'Sao Trời Làm Gió',
-                img: chart3,
-                album: 'Sao Trời Làm Gió (Single)',
-                singer: [
-                    {
-                        name: 'Nal',
-                    },
-                    {
-                        name: 'CT',
-                    },
-                ],
-                duration: '06:23',
-                rakingStatus: 0,
-            },
-        ],
-    },
-};
-
-function Rank() {
+function Rank({data}) {
     const [datas, setDatas] = useState([]);
     const [seeMore, setSeeMore] = useState(false);
 
     useEffect(() => {
-        setDatas(dataChartApi.RTChart.items);
-    }, []);
+        setDatas(data);
+    }, [data]);
+
+
+    
+    const tmp = useSelector(playlistSelector);
+    const btnPlayTmp = useSelector(btnPlaySelector);
+    const [currentSong, setCurrentSong] = useState(tmp);
+    
+    
+    useEffect(() => {
+        setCurrentSong(tmp?.songs[tmp?.currentSong]);
+    }, [tmp, btnPlayTmp])
+
+    const { refAudio } = useContext(AudioContext);
+
+    
+    const dispatch = useDispatch();
+    const handlePlayMusic = (item, index) => {
+        if(item._id !== currentSong._id) {
+            dispatch(playlistSlice.actions.startPlaylist({songs: datas, index}));
+            dispatch(btnPlaySlice.actions.playMusic());
+        } else {
+            if(btnPlayTmp.isPlay){
+                dispatch(btnPlaySlice.actions.pauseMusic());
+                refAudio?.current?.pause()
+            } else {
+                dispatch(btnPlaySlice.actions.playMusic());
+                refAudio?.current?.play()
+            }
+        }
+    }
+
 
     return (
         <div className="mt-[10px]">
             <div>
-                {datas?.map((data, index) => {
+                {datas?.map((item, index) => {
                     return (
                         seeMore ? <div key={index}>
-                            <CardRank data={data} index={index} />
+                            <CardRank handlePlayMusic={handlePlayMusic} data={item} index={index} />
                         </div> : 
                         index <= 9 ? <div key={index}>
-                        <CardRank data={data} index={index} />
+                        <CardRank handlePlayMusic={handlePlayMusic} data={item} index={index} />
                     </div> : ""
                     );
                 })}

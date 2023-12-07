@@ -25,6 +25,7 @@ function ZingChart() {
     
             if(res.data.success) {
                 setData(res.data.items);
+
             }
 
 
@@ -46,8 +47,8 @@ function ZingChart() {
     return (
         <div className='px-[50px] py-[20px]'>
             <Chart data={data?.rtChart} />
-            <Rank />
-            <WeekChart />
+            <Rank data={data?.rank?.items} />
+            <WeekChart data={data?.weekChart} />
         </div>
     );
 }
