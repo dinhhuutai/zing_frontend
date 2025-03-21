@@ -60,6 +60,7 @@ function AlbumCreate() {
     const dispatch = useDispatch();
 
     const handleCreatePlaylist = async () => {
+        console.log(imageLocal);
         try {
             if (!name) {
                 dispatch(noticeAdminSlice.actions.errorNotice('Vui lòng nhập tên album'));
@@ -156,7 +157,6 @@ function AlbumCreate() {
         }
     };
 
-    
     useEffect(() => {
         window.scrollTo({
             top: 0,

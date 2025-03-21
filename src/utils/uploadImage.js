@@ -1,4 +1,6 @@
 const uploadImage = (img) => {
+
+    console.log('img:', img)
     
     try {
         const uploadData = new FormData();
